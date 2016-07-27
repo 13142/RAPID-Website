@@ -10,9 +10,25 @@ body {
     text-align: center;
     font-size: 70pt;
     font-family: Mohave;
+    /*display:inline-block;*/
+    text-align: center;
+    width: 100%;
 }
 #HouseContainer {
     display: flex;
+}
+#titleImage{
+  /*-webkit-filter:brightness(100%);
+  -moz-filter:brightness(100%);
+  filter: url(#brightness);
+  filter:brightness(50%);*/
+}
+#titleBrightness {
+    width: auto;
+    height: auto;
+    background: white;
+    position: absolute;
+    opacity: 0;
 }
 .Houses {
     margin-top: 170px;
