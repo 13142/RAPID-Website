@@ -2,6 +2,9 @@
     font-family: Mohave;
     src: url(../Fonts/Mohave.otf);
 }
+:root{
+  --SheppardColorBeforeHover:rgb(57, 142, 255);
+}
 body {
     background-color: rgb(10, 10, 10);
     color: #d9d9d9;
@@ -17,13 +20,6 @@ body {
 #HouseContainer {
     display: flex;
 }
-#titleBrightness {
-    width: auto;
-    height: auto;
-    background: white;
-    position: absolute;
-    opacity: 0;
-}
 .Houses {
     margin-top: 170px;
     margin-bottom: 80px;
@@ -38,48 +34,54 @@ body {
 .Sheppard {
     flex-grow: 1;
     border-left-width: 6px;
-    background-color: #7da3e7;
-    box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.5),
-    inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
+    background-color: var(--SheppardColorBeforeHover);
+    box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.25), inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
     /*text-align: inherit;*/
     /*border-right: solid 5px white;*/
     animation-name: hoverFadeOut, hoverFade2Out;
     animation-direction: reverse;
     animation-duration: 0.2s;
+    animation-timing-function: ease;
 }
 .Sheppard:hover {
-  box-shadow: 0 0 50px 10px rgba(24, 165, 255, 0.8),
-  inset -3px -3px 1px 1px #072a71,
-  inset 3px 3px 1px 1px #6799ff;
-  background-color: rgb(0, 117, 255);
-  animation-name: hoverFade, hoverFade2;
-  animation-duration: 0.1s;
-  animation-timing-function:ease;
-  animation-direction: normal;
+    box-shadow: 0 0 50px 5px rgba(24, 165, 255, 0.8), inset -3px -3px 1px 1px #072a71, inset 3px 3px 1px 1px #6799ff;
+    background-color: rgb(0, 117, 255);
+    animation-name: hoverFade, hoverFade2;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-out;
+    animation-direction: normal;
 }
-
-
 @keyframes hoverFade {
-    from {background-color: rgb(125, 163, 231);}
-    to {background-color: rgb(0, 117, 255);}
+    from {
+        background-color: var(--SheppardColorBeforeHover);
+    }
+    to {
+        background-color: rgb(0, 117, 255);
+    }
 }
 @keyframes hoverFade2 {
-    from {box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.5),
-    inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;}
-    to {box-shadow: 0 0 50px 10px rgba(24, 165, 255, 0.8),
-    inset -3px -3px 1px 1px #072a71,
-    inset 3px 3px 1px 1px #6799ff;}
+    from {
+        box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.25), inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
+    }
+    to {
+        box-shadow: 0 0 50px 5px rgba(24, 165, 255, 0.8), inset -3px -3px 1px 1px #072a71, inset 3px 3px 1px 1px #6799ff;
+    }
 }
 @keyframes hoverFadeOut {
-    from {background-color: rgb(125, 163, 231);}
-    to {background-color: rgb(0, 117, 255);}
+    from {
+        background-color: var(--SheppardColorBeforeHover);
+    }
+    to {
+        background-color: rgb(0, 117, 255);
+    }
 }
 @keyframes hoverFade2Out {
-    from {box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.5),
-    inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;}
-    to {box-shadow: 0 0 50px 10px rgba(24, 165, 255, 0.8),
-    inset -3px -3px 1px 1px #072a71,
-    inset 3px 3px 1px 1px #6799ff;}
+    from {
+        box-shadow: 0 0 40px 10px rgba(24, 165, 255, 0.25), inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
+    }
+    to {
+        box-shadow: 0 0 50px 5px rgba(24, 165, 255, 0.8), inset -3px -3px 1px 1px #072a71, inset 3px 3px 1px 1px #6799ff;
+    }
 }
 .Snell {
     background-color: #333;
@@ -109,4 +111,12 @@ body {
     height: 50px;
     width: 100%;
     background-color: #d1d1d1;
+}
+.unselectable {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }

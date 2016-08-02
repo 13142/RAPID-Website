@@ -16,5 +16,6 @@ function pulsingTitle() {
     }
     brightness.style.webkitFilter =
         "brightness(" + (-20 * Math.cos((Math.PI / 50) * val) + 20 + 85) + "%)";
-
+    brightness.style.filter =
+        "brightness(" + (-  20 * Math.cos((Math.PI / 50) * val) + 20 + 85) + "%)";
 }
