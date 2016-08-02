@@ -1,0 +1,96 @@
+body {
+    background-color: rgb(10, 10, 10);
+    color: #d9d9d9;
+}
+.Title {
+    text-align: center;
+    font-size: 70pt;
+    font-family: Mohave;
+    width: 100%;
+    padding-top: 20px;
+}
+#HouseContainer {
+    display: flex;
+}
+.Houses {
+    margin-top: 170px;
+    margin-bottom: 80px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    text-align: center;
+    box-shadow: inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
+    flex-grow: 1;
+}
+$LightSide: rgba(255, 255, 255, 0.4);
+$DarkSide: rgba(0, 0, 0, 0.4);
+
+@mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown){
+  @keyframes hoverFade {
+      from {
+          background-color: $inCoUp;
+          box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+      }
+      to {
+          background-color: $inCoDown;
+          box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+      }
+  }
+  @keyframes hoverFadeOut {
+      from {
+          background-color: $inCoDown;
+          box-shadow: 0 0 40px 10px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+          z-index: 5;
+      }
+      to {
+          background-color: $inCoUp;
+          box-shadow: 0 0 50px 5px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+          z-index: 0;
+      }
+  }
+}
+
+.Sheppard {
+    $ColorUp: rgb(57, 142, 255);
+    $GlowUp: rgba(24, 165, 255, 0.25);
+    $ColorDown: rgb(0, 117, 255);
+    $GlowDown: rgba(24, 165, 255, 0.8);
+    flex-grow: 1;
+    border-left-width: 6px;
+    background-color: $ColorUp;
+    box-shadow: 0 0 40px 10px $GlowUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+    animation-name: hoverFadeOut;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+    z-index: 0;
+    &:hover {
+        background-color: $ColorDown;
+        box-shadow: 0 0 50px 5px $GlowDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+        animation-name: hoverFade;
+        animation-duration: 0.1s;
+        animation-timing-function: ease-out;
+        animation-direction: normal;
+        z-index: 5;
+    }
+    @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown);
+}
+.Snell {
+    background-color: #333;
+    z-index: 0;
+}
+.Hillary {
+    background-color: #f4f47c;
+}
+.Rutherford {
+    background-color: #AA3939;
+}
+.TePuea {
+    background-color: #AEDE94;
+}
+.unselectable {
+    cursor: default;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
