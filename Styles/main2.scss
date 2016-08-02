@@ -49,27 +49,33 @@ $DarkSide: rgba(0, 0, 0, 0.4);
   }
 }
 
+@mixin AnimBootstrapUp($inGlUp) {
+  box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+  animation-name: hoverFadeOut;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+  z-index: 0;
+}
+
+@mixin AnimBootstrapDown($inGlDown) {
+  box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+  animation-name: hoverFade;
+  animation-duration: 0.1s;
+  animation-timing-function: ease-out;
+  z-index: 5;
+}
 .Sheppard {
     $ColorUp: rgb(57, 142, 255);
     $GlowUp: rgba(24, 165, 255, 0.25);
     $ColorDown: rgb(0, 117, 255);
     $GlowDown: rgba(24, 165, 255, 0.8);
-    flex-grow: 1;
-    border-left-width: 6px;
+
     background-color: $ColorUp;
-    box-shadow: 0 0 40px 10px $GlowUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-    animation-name: hoverFadeOut;
-    animation-duration: 0.2s;
-    animation-timing-function: ease-in;
-    z-index: 0;
+
+    @include AnimBootstrapUp($GlowUp);
     &:hover {
         background-color: $ColorDown;
-        box-shadow: 0 0 50px 5px $GlowDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-        animation-name: hoverFade;
-        animation-duration: 0.1s;
-        animation-timing-function: ease-out;
-        animation-direction: normal;
-        z-index: 5;
+        @include AnimBootstrapDown($GlowDown);
     }
     @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown);
 }
