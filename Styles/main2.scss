@@ -24,24 +24,24 @@ body {
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
 
-@mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown){
-  @keyframes hoverFade {
-      from {
+@mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $class){
+  @keyframes #{$class}HoverFadeIn {
+      0% {
           background-color: $inCoUp;
           box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
       }
-      to {
+      100% {
           background-color: $inCoDown;
           box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
       }
   }
-  @keyframes hoverFadeOut {
-      from {
+  @keyframes #{$class}HoverFadeOut {
+      0% {
           background-color: $inCoDown;
           box-shadow: 0 0 40px 10px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
           z-index: 5;
       }
-      to {
+      100% {
           background-color: $inCoUp;
           box-shadow: 0 0 50px 5px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
           z-index: 0;
@@ -49,22 +49,23 @@ $DarkSide: rgba(0, 0, 0, 0.4);
   }
 }
 
-@mixin AnimBootstrapUp($inGlUp) {
+@mixin AnimBootstrapUp($inGlUp, $class) {
   box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-  animation-name: hoverFadeOut;
+  animation-name: #{$class}HoverFadeOut;
   animation-duration: 0.2s;
   animation-timing-function: ease-in;
   z-index: 0;
 }
 
-@mixin AnimBootstrapDown($inGlDown) {
+@mixin AnimBootstrapDown($inGlDown, $class) {
   box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-  animation-name: hoverFade;
+  animation-name: #{$class}HoverFadeIn;
   animation-duration: 0.1s;
   animation-timing-function: ease-out;
   z-index: 5;
 }
 .Sheppard {
+    $class:"Sheppard";
     $ColorUp: rgb(57, 142, 255);
     $GlowUp: rgba(24, 165, 255, 0.25);
     $ColorDown: rgb(0, 117, 255);
@@ -72,16 +73,33 @@ $DarkSide: rgba(0, 0, 0, 0.4);
 
     background-color: $ColorUp;
 
-    @include AnimBootstrapUp($GlowUp);
+    @include AnimBootstrapUp($GlowUp, $class);
     &:hover {
         background-color: $ColorDown;
-        @include AnimBootstrapDown($GlowDown);
+        @include AnimBootstrapDown($GlowDown, $class);
     }
-    @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown);
+    @at-root{
+       @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
+    }
+
 }
 .Snell {
-    background-color: #333;
-    z-index: 0;
+  $class:"Snell";
+  $ColorUp: rgb(60, 60, 60);
+  $GlowUp: rgba(150, 150, 150, 0.25);
+  $ColorDown: rgb(80, 80, 80);
+  $GlowDown: rgba(150, 150, 150, 0.8);
+
+  background-color: $ColorUp;
+  @include AnimBootstrapUp($GlowUp, $class);
+
+  &:hover{
+    background-color: $ColorDown;
+    @include AnimBootstrapDown($GlowDown, $class);
+  }
+  @at-root{
+     @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
+  }
 }
 .Hillary {
     background-color: #f4f47c;
