@@ -23,83 +23,92 @@ body {
 }
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
+$LightSidePressed: rgba(0, 0, 0, 0.4);
+$DarkSidePressed: rgba(200, 200, 200, 0.25);
 
-@mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $class){
-  @keyframes #{$class}HoverFadeIn {
-      0% {
-          background-color: $inCoUp;
-          box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-      }
-      100% {
-          background-color: $inCoDown;
-          box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-      }
-  }
-  @keyframes #{$class}HoverFadeOut {
-      0% {
-          background-color: $inCoDown;
-          box-shadow: 0 0 40px 10px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-          z-index: 5;
-      }
-      100% {
-          background-color: $inCoUp;
-          box-shadow: 0 0 50px 5px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-          z-index: 0;
-      }
-  }
+@mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $class) {
+     @keyframes #{$class}HoverFadeIn{
+        0% {
+            background-color: $inCoUp;
+            box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+        }
+        100% {
+            background-color: $inCoDown;
+            box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+        }
+    }
+    @keyframes #{$class}HoverFadeOut {
+        0% {
+            background-color: $inCoDown;
+            box-shadow: 0 0 40px 10px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+            z-index: 5;
+        }
+        100% {
+            background-color: $inCoUp;
+            box-shadow: 0 0 50px 5px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+            z-index: 0;
+        }
+    }
 }
-
-@mixin AnimBootstrapUp($inGlUp, $class) {
-  box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-  animation-name: #{$class}HoverFadeOut;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in;
-  z-index: 0;
+@mixin AnimBootstrapUp($class) {
+    animation-name: #{$class}HoverFadeOut;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+    z-index: 0;
 }
+@mixin AnimBootstrapDown($class) {
+    animation-name: #{$class}HoverFadeIn;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-out;
+    z-index: 5;
+}
+@mixin EverythingBundle($inClass, $inCoUp, $inCoDown, $inCoPressed, $inGlUp, $inGlDown, $inGlPressed) {
+    background-color: $inCoUp;
+    box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+    @include AnimBootstrapUp($inClass);
+    &:hover {
+        background-color: $inCoDown;
+        box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+        @include AnimBootstrapDown($inClass);
 
-@mixin AnimBootstrapDown($inGlDown, $class) {
-  box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-  animation-name: #{$class}HoverFadeIn;
-  animation-duration: 0.1s;
-  animation-timing-function: ease-out;
-  z-index: 5;
+        &:active {
+            background-color: $inCoPressed;
+            box-shadow: 0 0 50px 5px $inGlPressed, inset -3px -3px 1px 1px $DarkSidePressed, inset 3px 3px 1px 1px $LightSidePressed;
+        }
+    }
+    @at-root {
+         @include DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $inClass);
+    }
 }
 .Sheppard {
-    $class:"Sheppard";
+    $Class: "Sheppard";
     $ColorUp: rgb(57, 142, 255);
     $GlowUp: rgba(24, 165, 255, 0.25);
     $ColorDown: rgb(0, 117, 255);
     $GlowDown: rgba(24, 165, 255, 0.8);
-
-    background-color: $ColorUp;
-
-    @include AnimBootstrapUp($GlowUp, $class);
-    &:hover {
-        background-color: $ColorDown;
-        @include AnimBootstrapDown($GlowDown, $class);
-    }
-    @at-root{
-       @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
-    }
-
+    $ColorPressed: rgb(0, 80, 175);
+    $GlowPressed: rgba(22, 129, 198, 0.63);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .Snell {
-  $class:"Snell";
-  $ColorUp: rgb(60, 60, 60);
-  $GlowUp: rgba(150, 150, 150, 0.25);
-  $ColorDown: rgb(80, 80, 80);
-  $GlowDown: rgba(150, 150, 150, 0.8);
+    $Class: "Snell";
+    $ColorUp: rgb(60, 60, 60);
+    $GlowUp: rgba(150, 150, 150, 0.25);
+    $ColorDown: rgb(80, 80, 80);
+    $GlowDown: rgba(150, 150, 150, 0.8);
+    $ColorPressed: rgb(24, 24, 24);
+    $GlowPressed: rgba(97, 97, 97, 0.61);
 
-  background-color: $ColorUp;
-  @include AnimBootstrapUp($GlowUp, $class);
-
-  &:hover{
-    background-color: $ColorDown;
-    @include AnimBootstrapDown($GlowDown, $class);
-  }
-  @at-root{
-     @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
-  }
+    // background-color: $ColorUp;
+    // @include AnimBootstrapUp($class);
+    // &:hover {
+    //     background-color: $ColorDown;
+    //     @include AnimBootstrapDown($class);
+    // }
+    // @at-root {
+    //      @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
+    // }
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .Hillary {
     background-color: #f4f47c;
