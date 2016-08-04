@@ -12,7 +12,7 @@
             <img src="./Images/ForTitle.png" alt="" id="titleImage" draggable="false" ondragstart="return false" class="unselectable"/>
         </div>
         <div id="HouseContainer" class="unselectable">
-            <div class="Sheppard Houses">
+            <div class="Sheppard Houses" onmouseup="SheppardClick()">
               Sheppard
             </div>
             <div class="Snell Houses">
@@ -31,8 +31,12 @@
         <div class="Footer">
             Bottom Part
         </div>
-        <script type="text/javascript" src="./Code/main.js">
-        </script>
+
+        <!-- Jquery and dependencies-->
+        <script type="text/javascript" src="./Code/jQuery-3.1.0.js"></script>
+
+        <script type="text/javascript" src="./Code/main.js"></script>
+        <script type="text/javascript" src="./Code/ButtonLinks.js"></script>
 </body>
 
 </html>
