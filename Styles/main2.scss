@@ -98,26 +98,37 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $GlowDown: rgba(150, 150, 150, 0.8);
     $ColorPressed: rgb(24, 24, 24);
     $GlowPressed: rgba(97, 97, 97, 0.61);
-
-    // background-color: $ColorUp;
-    // @include AnimBootstrapUp($class);
-    // &:hover {
-    //     background-color: $ColorDown;
-    //     @include AnimBootstrapDown($class);
-    // }
-    // @at-root {
-    //      @include DoubleGlowAnim($ColorUp, $ColorDown, $GlowUp, $GlowDown, $class);
-    // }
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .Hillary {
-    background-color: #f4f47c;
+  $Class: "Hillary";
+  $ColorUp: rgb(255, 255, 69);;
+  $GlowUp: rgba(243, 255, 24, 0.25);
+  $ColorDown: rgb(255, 255, 17);;
+  $GlowDown: rgba(250, 255, 24, 0.8);
+  $ColorPressed: rgb(166, 175, 0);
+  $GlowPressed: rgba(194, 198, 22, 0.63);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .Rutherford {
-    background-color: #AA3939;
+  $Class: "Rutherford";
+  $ColorUp: rgb(204, 68, 68);
+  $GlowUp: rgba(255, 24, 24, 0.25);
+  $ColorDown: rgb(235, 27, 27);
+  $GlowDown: rgba(255, 24, 24, 0.8);
+  $ColorPressed: rgb(160, 0, 0);
+  $GlowPressed: rgba(198, 22, 22, 0.63);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .TePuea {
-    background-color: #AEDE94;
+  $Class: "TePuea";
+  $ColorUp: rgb(108, 189, 63);
+  $GlowUp: rgba(24, 255, 61, 0.25);
+  $ColorDown: rgb(15, 226, 55);
+  $GlowDown: rgba(24, 255, 27, 0.8);
+  $ColorPressed: rgb(10, 143, 27);
+  $GlowPressed: rgba(22, 198, 23, 0.63);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
 }
 .unselectable {
     cursor: default;
