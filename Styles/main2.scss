@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Lavanderia;
+  src: url("../Fonts/Lavanderia Regular.otf");
+}
+
 body {
     background-color: rgb(10, 10, 10);
     color: #d9d9d9;
@@ -15,11 +20,17 @@ body {
 .Houses {
     margin-top: 170px;
     margin-bottom: 80px;
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     text-align: center;
     box-shadow: inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
     flex-grow: 1;
+
+    font-family: Lavanderia;
+    font-size: 62pt;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px rgb(45, 45, 45);
+    flex-basis: 20%;
 }
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
@@ -62,8 +73,9 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     animation-timing-function: ease-out;
     z-index: 5;
 }
-@mixin EverythingBundle($inClass, $inCoUp, $inCoDown, $inCoPressed, $inGlUp, $inGlDown, $inGlPressed) {
+@mixin EverythingBundle($inClass, $inCoUp, $inCoDown, $inCoPressed, $inGlUp, $inGlDown, $inGlPressed, $inTeUp, $inTePressed) {
     background-color: $inCoUp;
+    color: $inTeUp;
     box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
     @include AnimBootstrapUp($inClass);
     &:hover {
@@ -73,6 +85,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
 
         &:active {
             background-color: $inCoPressed;
+            color: $inTePressed;
             box-shadow: 0 0 50px 5px $inGlPressed, inset -3px -3px 1px 1px $DarkSidePressed, inset 3px 3px 1px 1px $LightSidePressed;
         }
     }
@@ -88,7 +101,11 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $GlowDown: rgba(24, 165, 255, 0.8);
     $ColorPressed: rgb(0, 80, 175);
     $GlowPressed: rgba(22, 129, 198, 0.63);
-    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
+    $TextUp: rgb(213, 231, 252);
+    $TextPressed: rgb(158, 182, 209);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+
+
 }
 .Snell {
     $Class: "Snell";
@@ -98,7 +115,9 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $GlowDown: rgba(150, 150, 150, 0.8);
     $ColorPressed: rgb(24, 24, 24);
     $GlowPressed: rgba(97, 97, 97, 0.61);
-    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
+    $TextUp: rgb(240, 240, 240);
+    $TextPressed: rgb(210, 210, 210);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .Hillary {
   $Class: "Hillary";
@@ -108,7 +127,9 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
   $GlowDown: rgba(250, 255, 24, 0.8);
   $ColorPressed: rgb(166, 175, 0);
   $GlowPressed: rgba(194, 198, 22, 0.63);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
+  $TextUp: rgb(250, 252, 213);
+  $TextPressed: rgb(209, 207, 158);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .Rutherford {
   $Class: "Rutherford";
@@ -118,7 +139,9 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
   $GlowDown: rgba(255, 24, 24, 0.8);
   $ColorPressed: rgb(160, 0, 0);
   $GlowPressed: rgba(198, 22, 22, 0.63);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
+  $TextUp: rgb(252, 213, 213);
+  $TextPressed: rgb(209, 158, 158);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .TePuea {
   $Class: "TePuea";
@@ -128,7 +151,9 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
   $GlowDown: rgba(24, 255, 27, 0.8);
   $ColorPressed: rgb(10, 143, 27);
   $GlowPressed: rgba(22, 198, 23, 0.63);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed);
+  $TextUp: rgb(215, 252, 213);
+  $TextPressed: rgb(159, 209, 158);
+  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .unselectable {
     cursor: default;
