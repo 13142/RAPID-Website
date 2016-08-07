@@ -1,8 +1,7 @@
 @font-face {
-  font-family: Lavanderia;
-  src: url("../Fonts/Lavanderia Regular.otf");
+    font-family: Lavanderia;
+    src: url("../Fonts/Lavanderia Regular.otf");
 }
-
 body {
     background-color: rgb(10, 10, 10);
     color: #d9d9d9;
@@ -17,26 +16,44 @@ body {
 #HouseContainer {
     display: flex;
 }
-.Houses {
+.IndContainer {
     margin-top: 170px;
     margin-bottom: 80px;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    text-align: center;
-    box-shadow: inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
+    // padding-top: 100px;
+    // padding-bottom: 100px;
+    //width: 150px;
+  //  vertical-align: middle;
+    height: 250px;
     flex-grow: 1;
-
+    flex-basis: 20%;
+    position: relative;
+}
+.Houses {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 240px;
+    vertical-align: middle;
+    //display: table-cell;
+    //box-shadow: inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
     font-family: Lavanderia;
     font-size: 62pt;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px rgb(45, 45, 45);
-    flex-basis: 20%;
 }
+.overLap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
 $LightSidePressed: rgba(0, 0, 0, 0.4);
 $DarkSidePressed: rgba(200, 200, 200, 0.25);
-
 @mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $class) {
      @keyframes #{$class}HoverFadeIn{
         0% {
@@ -77,14 +94,17 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     background-color: $inCoUp;
     color: $inTeUp;
     box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+    position: absolute;
+    left: 0px;
+    top: 0px;
     @include AnimBootstrapUp($inClass);
     &:hover {
         background-color: $inCoDown;
         box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
         @include AnimBootstrapDown($inClass);
-
         &:active {
             background-color: $inCoPressed;
+
             color: $inTePressed;
             box-shadow: 0 0 50px 5px $inGlPressed, inset -3px -3px 1px 1px $DarkSidePressed, inset 3px 3px 1px 1px $LightSidePressed;
         }
@@ -104,8 +124,6 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextUp: rgb(213, 231, 252);
     $TextPressed: rgb(158, 182, 209);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
-
-
 }
 .Snell {
     $Class: "Snell";
@@ -120,40 +138,40 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .Hillary {
-  $Class: "Hillary";
-  $ColorUp: rgb(255, 255, 69);;
-  $GlowUp: rgba(243, 255, 24, 0.25);
-  $ColorDown: rgb(255, 255, 17);;
-  $GlowDown: rgba(250, 255, 24, 0.8);
-  $ColorPressed: rgb(166, 175, 0);
-  $GlowPressed: rgba(194, 198, 22, 0.63);
-  $TextUp: rgb(250, 252, 213);
-  $TextPressed: rgb(209, 207, 158);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+    $Class: "Hillary";
+    $ColorUp: rgb(255, 255, 69);
+    $GlowUp: rgba(243, 255, 24, 0.25);
+    $ColorDown: rgb(255, 255, 17);
+    $GlowDown: rgba(250, 255, 24, 0.8);
+    $ColorPressed: rgb(166, 175, 0);
+    $GlowPressed: rgba(194, 198, 22, 0.63);
+    $TextUp: rgb(250, 252, 213);
+    $TextPressed: rgb(209, 207, 158);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .Rutherford {
-  $Class: "Rutherford";
-  $ColorUp: rgb(204, 68, 68);
-  $GlowUp: rgba(255, 24, 24, 0.25);
-  $ColorDown: rgb(235, 27, 27);
-  $GlowDown: rgba(255, 24, 24, 0.8);
-  $ColorPressed: rgb(160, 0, 0);
-  $GlowPressed: rgba(198, 22, 22, 0.63);
-  $TextUp: rgb(252, 213, 213);
-  $TextPressed: rgb(209, 158, 158);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+    $Class: "Rutherford";
+    $ColorUp: rgb(204, 68, 68);
+    $GlowUp: rgba(255, 24, 24, 0.25);
+    $ColorDown: rgb(235, 27, 27);
+    $GlowDown: rgba(255, 24, 24, 0.8);
+    $ColorPressed: rgb(160, 0, 0);
+    $GlowPressed: rgba(198, 22, 22, 0.63);
+    $TextUp: rgb(252, 213, 213);
+    $TextPressed: rgb(209, 158, 158);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .TePuea {
-  $Class: "TePuea";
-  $ColorUp: rgb(108, 189, 63);
-  $GlowUp: rgba(24, 255, 61, 0.25);
-  $ColorDown: rgb(15, 226, 55);
-  $GlowDown: rgba(24, 255, 27, 0.8);
-  $ColorPressed: rgb(10, 143, 27);
-  $GlowPressed: rgba(22, 198, 23, 0.63);
-  $TextUp: rgb(215, 252, 213);
-  $TextPressed: rgb(159, 209, 158);
-  @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+    $Class: "TePuea";
+    $ColorUp: rgb(108, 189, 63);
+    $GlowUp: rgba(24, 255, 61, 0.25);
+    $ColorDown: rgb(15, 226, 55);
+    $GlowDown: rgba(24, 255, 27, 0.8);
+    $ColorPressed: rgb(10, 143, 27);
+    $GlowPressed: rgba(22, 198, 23, 0.63);
+    $TextUp: rgb(215, 252, 213);
+    $TextPressed: rgb(159, 209, 158);
+    @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
 .unselectable {
     cursor: default;

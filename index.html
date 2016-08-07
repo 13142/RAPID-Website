@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>RAPID</title>
-    <link rel="stylesheet" href="Styles/main2.min.css" class="unselectable">
+    <link rel="stylesheet" href="Styles/main2.min.css">
+    <link rel="stylesheet" href="Styles/jquery-ui.min.css">
 </head>
 
 <body oncontextmenu="return false">
     <div class="top">
         <div class="Title">
-            <img src="./Images/ForTitle.png" alt="" id="titleImage" draggable="false" ondragstart="return false" class="unselectable"/>
+            <img src="./Images/ForTitle.png" alt="" id="titleImage" draggable="false" ondragstart="return false" class="unselectable" />
         </div>
         <div id="HouseContainer" class="unselectable">
-            <div class="Sheppard Houses" onmouseup="SheppardClick()">
-              Sheppard
+            <div class="IndContainer">
+                <div class="overLap" id="sheppardGlow"></div>
+                <div class="Sheppard Houses" onmouseup="SheppardClick(event)">
+                    Sheppard
+                </div>
             </div>
-            <div class="Snell Houses">
-                Snell
+            <div class="IndContainer">
+              <div class="overLap" id="snellGlow"></div>
+                <div class="Snell Houses" onmouseup="SnellClick(event)">
+                    Snell
+                </div>
             </div>
-            <div class="Hillary Houses">
-                Hillay
+            <div class="IndContainer">
+              <div class="overLap" id="hillaryGlow"></div>
+                <div class="Hillary Houses" onmouseup="HillaryClick(event)">
+                    Hillay
+                </div>
             </div>
-            <div class="Rutherford Houses">
-                Rutherford
+            <div class="IndContainer">
+              <div class="overLap" id="rutherfordGlow"></div>
+                <div class="Rutherford Houses" onmouseup="RutherfordClick(event)">
+                    Rutherford
+                </div>
             </div>
-            <div class="TePuea Houses">
-                Te Puea
+            <div class="IndContainer">
+              <div class="overLap" id="tepueaGlow"></div>
+                <div class="TePuea Houses" onmouseup="TepueaClick(event)">
+                    Te Puea
+                </div>
             </div>
         </div>
         <div class="Footer">
@@ -33,8 +50,9 @@
         </div>
 
         <!-- Jquery and dependencies-->
-        <script type="text/javascript" src="./Code/jQuery-3.1.0.js"></script>
-        <script type="text/javascript" src"./Code/jquery.animate-shadow.js"></script>
+        <script type="text/javascript" src="./Code/jquery-3.1.0.js"></script>
+        <script type="text/javascript" src="./Code/jquery-ui.js"></script>
+        <script type="text/javascript" src="./Code/jquery.animate-shadow.js"></script>
 
         <script type="text/javascript" src="./Code/main.js"></script>
         <script type="text/javascript" src="./Code/ButtonLinks.js"></script>

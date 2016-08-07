@@ -5,7 +5,6 @@
  * Contributors: Mark Carver, Xavier Lepretre and Jason Redding
  * Released under the MIT and GPL licenses.
  */
-
 jQuery(function($, undefined) {
 	/**
 	 * Check whether the browser supports RGBA color mode.
