@@ -173,11 +173,3 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextPressed: rgb(159, 209, 158);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
-.unselectable {
-    cursor: default;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
