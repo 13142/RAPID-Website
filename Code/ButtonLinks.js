@@ -23,9 +23,9 @@ function SheppardClick(e) {
         //   });
         $("#sheppardGlow").css("z-index", "1000");
         $(".Sheppard").css("z-index", "-1");
-        // setTimeout(function delayed() {
-        //     GoToPage("Sheppard");
-        // }, 1600);
+         setTimeout(function delayed() {
+             GoToPage("Sheppard");
+         }, 1600);
     }
 }
 
