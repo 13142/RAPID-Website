@@ -2,8 +2,20 @@
     font-family: Mohave;
     src: url("../../../Fonts/Mohave.otf");
 }
-body {
+body,
+html {
     background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+#PageWrapper {
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 @mixin GlowingText($name, $inInnerColor, $inOuterColor) {
      @keyframes #{$name}NeonText{
@@ -12,7 +24,6 @@ body {
         }
         to {
             text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor;
-
         }
     }
 }
@@ -26,8 +37,10 @@ body {
         }
     }
 }
-.top-container{
-  display: flex;
+.top-container {
+    flex: 0 1 50px;
+    display: flex;
+    margin: 0 5px;
 }
 .SheppardTitle {
     text-align: center;
@@ -41,24 +54,63 @@ body {
     border: medium white solid;
     flex-grow: 1;
     flex-basis: 80%;
-    &:hover {
-        cursor: default;
-    }
     @at-root {
          @include SoftText("Title", #cce8ff, rgb(2, 151, 246));
     }
 }
-
-.lesserContainer{
-  flex-grow: 1;
-  color: white;
-  border: medium white solid;
-  margin-top: 5px;
+.lesserContainer {
+    flex-grow: 1;
+    color: white;
+    border: medium white solid;
+    margin-top: 5px;
 }
-
-.vertText{
-  text-align: center;
-  transform: rotate(90deg);
-  transform-origin: left bottom 0;
-  float: left;
+.vertText {
+    text-align: center;
+    transform: rotate(90deg);
+    transform-origin: left bottom 0;
+    float: left;
 }
+// .center, .leftCol, .rightCol{
+//   flex: 1 0 100%;
+// }
+.mainBody > * {
+    padding: 10px;
+    flex: 1 100%;
+}
+.mainBody {
+    border: white medium solid;
+    flex: 1 1 auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 150px;
+    display: flex;
+    flex-flow: row wrap;
+    .leftCol {
+
+
+        border: white solid medium;
+        flex: 1 1 auto;
+        order: 1;
+        //  height: 90%;
+        //  width: 25%;
+    }
+    .center {
+        flex: 3 1 auto;
+        border: white solid medium;
+        order: 2;
+    }
+    .rightCol {
+        //margin-left: 150px;
+        border: white solid medium;
+        flex: 1 1 auto;
+        order: 3;
+        //  height: 90%;
+        //  width: 25%;
+    }
+}
+.footer {
+    border: white medium solid;
+    flex: 0 1 50px;
+    margin: 0 5px;
+}
+// wweqwe
