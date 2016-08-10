@@ -40,7 +40,7 @@ body {
     animation: TitleNeonText 1.5s ease-in-out infinite alternate;
     border: medium white solid;
     flex-grow: 1;
-    flex-basis: 80%;
+    flex-basis: 88%;
     &:hover {
         cursor: default;
     }
@@ -50,7 +50,8 @@ body {
 }
 
 .lesserContainer{
-  flex-grow: 1;
+  flex-grow: 0;
+  flex-basis: 3%;
   color: white;
   border: medium white solid;
   margin-top: 5px;
