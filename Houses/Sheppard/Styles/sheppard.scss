@@ -37,6 +37,33 @@ html {
         }
     }
 }
+#loaderWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 1000;
+}
+#loader {
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    font-family: Mohave;
+    font-size: 100pt;
+    color: #ffffff;
+    animation: LoadingNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include GlowingText("Loading" ,rgb(255, 255, 255), rgb(2, 151, 246));
+    }
+    width: 100%;
+}
+.loaded {
+    opacity: 0;
+    //transition: all 0.3s ease-out;
+}
 .top-container {
     flex: 0 1 50px;
     display: flex;
@@ -54,6 +81,10 @@ html {
     border: medium white solid;
     flex-grow: 1;
     flex-basis: 80%;
+    flex-basis: 88%;
+    &:hover {
+        cursor: default;
+    }
     @at-root {
          @include SoftText("Title", #cce8ff, rgb(2, 151, 246));
     }
@@ -77,6 +108,13 @@ html {
     padding: 10px;
     flex: 1 100%;
 }
+.lesserContainer {
+    flex-grow: 0;
+    flex-basis: 3%;
+    color: white;
+    border: medium white solid;
+    margin-top: 5px;
+}
 .mainBody {
     border: white medium solid;
     flex: 1 1 auto;
@@ -86,8 +124,6 @@ html {
     display: flex;
     flex-flow: row wrap;
     .leftCol {
-
-
         border: white solid medium;
         flex: 1 1 auto;
         order: 1;
