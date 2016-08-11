@@ -52,6 +52,7 @@ html {
     top: 40%;
     height: 20%;
     font-family: Mohave;
+    opacity: 1;
     font-size: 100pt;
     color: #ffffff;
     animation: LoadingNeonText 1.5s ease-in-out infinite alternate;
@@ -62,7 +63,8 @@ html {
 }
 .loaded {
     opacity: 0;
-    //transition: all 0.3s ease-out;
+    visibility: hidden;
+    transition: opacity 1s ease-out, visibility 0s linear 1s;
 }
 .top-container {
     flex: 0 1 50px;
