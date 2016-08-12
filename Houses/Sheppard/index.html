@@ -6,11 +6,11 @@
     <title>RAPID</title>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/sheppard.min.css">
-    <link rel="stylesheet" href="/Styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../Styles/jquery-ui.min.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
-  <div id="loaderWrapper"  class="loaded">
+  <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
     <div id="loader">Sheppard</div>
     <!-- <div class="loader"> -->
 
@@ -50,10 +50,13 @@
 
         </div>
     </div>
+    <div class="clear">
+        This is the body
+    </div>
     <!-- Jquery and dependencies-->
-    <script type="text/javascript" src="./Code/jquery-3.1.0.js"></script>
-    <script type="text/javascript" src="./Code/jquery-ui.js"></script>
-    <script type="text/javascript" src="./Code/jquery.animate-shadow.js"></script>
+    <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="../../Code/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../Code/jquery.animate-shadow.js"></script>
 
     <script type="text/javascript" src="./Code/Sheppard.js"></script>
 </body>
