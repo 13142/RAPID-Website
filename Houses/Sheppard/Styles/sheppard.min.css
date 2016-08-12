@@ -6,7 +6,8 @@ html {
   background-color: black;
   height: 100%;
   width: 100%;
-  margin: 0; }
+  margin: 0;
+  background-color: #000023; }
 
 #PageWrapper {
   display: flex;
@@ -96,6 +97,7 @@ html {
 
 .mainBody {
   border: white medium solid;
+  background-color: #001542;
   flex: 1 1 auto;
   flex-grow: 1;
   flex-shrink: 1;
