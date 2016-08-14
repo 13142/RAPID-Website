@@ -1,6 +1,6 @@
 @font-face {
     font-family: Lavanderia;
-    src: url("../Fonts/Lavanderia Regular.otf");
+    src: url("../Fonts/Mohave.otf");
 }
 body {
     background-color: rgb(10, 10, 10);
@@ -22,11 +22,43 @@ body {
     // padding-top: 100px;
     // padding-bottom: 100px;
     //width: 150px;
-  //  vertical-align: middle;
+    //  vertical-align: middle;
     height: 250px;
     flex-grow: 1;
     flex-basis: 20%;
     position: relative;
+}
+@mixin DoGlowingText($name, $inInnerColor, $inOuterColor, $inInnerColorDown) {
+     @keyframes #{$name}NeonText{
+        from {
+            // text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
+            @include StaticGlowTxtUp($name, $inInnerColor, $inOuterColor);
+        }
+        to {
+            //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
+            @include StaticGlowTxtDown($name, $inInnerColorDown, $inOuterColor);
+        }
+    }
+    @keyframes #{$name}NeonTextReverse {
+        from {
+            //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
+            @include StaticGlowTxtDown($name, $inInnerColorDown, $inOuterColor);
+        }
+        to {
+            //    text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
+            @include StaticGlowTxtUp($name, $inInnerColor, $inOuterColor);
+        }
+    }
+}
+@mixin SoftText($name, $inInnerColor, $inOuterColor) {
+     @keyframes #{$name}NeonText{
+        from {
+            text-shadow: 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 70px $inOuterColor;
+        }
+        to {
+            text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
+        }
+    }
 }
 .Houses {
     width: 100%;
@@ -39,7 +71,7 @@ body {
     font-family: Lavanderia;
     font-size: 62pt;
     color: rgb(255, 255, 255);
-    text-shadow: 2px 2px rgb(45, 45, 45);
+    //text-shadow: 2px 2px rgb(45, 45, 45), -2px -2px rgb(45, 45, 45), -2px 2px rgb(45, 45, 45), 2px -2px rgb(45, 45, 45);
 }
 .overLap {
     position: absolute;
@@ -49,7 +81,6 @@ body {
     left: 0;
     top: 0;
 }
-
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
 $LightSidePressed: rgba(0, 0, 0, 0.4);
@@ -78,16 +109,28 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
         }
     }
 }
+@mixin StaticGlowTxtUp($name, $inInnerColor, $inOuterColor) {
+    text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 3px 3px rgb(0, 0, 0), -3px -3px rgb(0, 0, 0), 3px -3px rgb(0, 0, 0), -3px 3px rgb(0, 0, 0), 3px 0px rgb(0, 0, 0), -3px 0px rgb(0, 0, 0), 0px -3px rgb(0, 0, 0), 0px 3px rgb(0, 0, 0);
+}
+          //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
+@mixin StaticGlowTxtDown($name, $inInnerColor, $inOuterColor) {
+    text-shadow: 0 0 3px $inInnerColor, 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor, 3px 3px rgb(0, 0, 0), -3px -3px rgb(0, 0, 0), 3px -3px rgb(0, 0, 0), -3px 3px rgb(0, 0, 0), 3px 0px rgb(0, 0, 0), -3px 0px rgb(0, 0, 0), 0px -3px rgb(0, 0, 0), 0px 3px rgb(0, 0, 0);
+}
 @mixin AnimBootstrapUp($class) {
-    animation-name: #{$class}HoverFadeOut;
-    animation-duration: 0.2s;
-    animation-timing-function: ease-in;
+    //  animation: TitleNeonText 1.5s ease-in-out infinite alternate;
+    animation-name: #{$class}HoverFadeOut, #{$class}NeonTextReverse;
+    animation-duration: 0.2s, 0.3s;
+    animation-timing-function: ease-in, ease-in-out;
+    animation-iteration-count: 1, 1;
+    animation-direction: normal, normal;
     z-index: 0;
 }
 @mixin AnimBootstrapDown($class) {
-    animation-name: #{$class}HoverFadeIn;
-    animation-duration: 0.1s;
-    animation-timing-function: ease-out;
+    animation-name: #{$class}HoverFadeIn, #{$class}NeonText;
+    animation-duration: 0.2s, 0.3s;
+    animation-timing-function: ease-in, ease-in-out;
+    animation-iteration-count: 1, 1;
+    animation-direction: normal, normal;
     z-index: 5;
 }
 @mixin EverythingBundle($inClass, $inCoUp, $inCoDown, $inCoPressed, $inGlUp, $inGlDown, $inGlPressed, $inTeUp, $inTePressed) {
@@ -95,22 +138,24 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     color: $inTeUp;
     box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
+    @include StaticGlowTxtUp($inClass, $inTeUp, $inCoDown);
     @include AnimBootstrapUp($inClass);
     &:hover {
         background-color: $inCoDown;
         box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+        @include StaticGlowTxtDown($inClass, rgba(255, 255, 255, 0.5), $inCoDown);
         @include AnimBootstrapDown($inClass);
         &:active {
             background-color: $inCoPressed;
-
             color: $inTePressed;
             box-shadow: 0 0 50px 5px $inGlPressed, inset -3px -3px 1px 1px $DarkSidePressed, inset 3px 3px 1px 1px $LightSidePressed;
         }
     }
     @at-root {
-         @include DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $inClass);
+        @include DoGlowingText($inClass, $inTeUp, $inCoDown, rgba(255, 255, 255, 0.5));
+        @include DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $inClass);
     }
 }
 .Sheppard {
@@ -160,6 +205,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextUp: rgb(252, 213, 213);
     $TextPressed: rgb(209, 158, 158);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+    font-size: 55pt;
 }
 .TePuea {
     $Class: "TePuea";

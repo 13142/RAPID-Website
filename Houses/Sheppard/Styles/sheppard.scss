@@ -8,9 +8,10 @@ html {
     height: 100%;
     width: 100%;
     margin: 0;
-  background-color: #000023;
+    background-color: #000023;
 }
 #PageWrapper {
+    position: absolute;
     display: flex;
     flex-flow: column;
     flex-wrap: nowrap;
@@ -70,6 +71,7 @@ html {
 .top-container {
     flex: 0 1 auto;
     display: flex;
+    flex-flow: row;
     margin: 0 5px;
 }
 .SheppardTitle {
@@ -82,9 +84,8 @@ html {
     color: #cce8ff;
     animation: TitleNeonText 1.5s ease-in-out infinite alternate;
     border: medium white solid;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-basis: 80%;
-    flex-basis: 88%;
     &:hover {
         cursor: default;
     }
@@ -94,29 +95,59 @@ html {
 }
 .lesserContainer {
     flex-grow: 1;
+    flex-basis: 1%;
     color: white;
     border: medium white solid;
     margin-top: 5px;
+    //display: flex;
+    //flex-flow: row;
 }
 .vertText {
     text-align: center;
-    transform: rotate(90deg);
+    transform: rotate(90deg) translate(-45px, -15px);
     transform-origin: left bottom 0;
     float: left;
+    font-family: Mohave;
+    font-size: 40pt;
+    position: fixed;
+    white-space: nowrap;
 }
-// .center, .leftCol, .rightCol{
-//   flex: 1 0 100%;
-// }
+.RutherfordTxt {
+  $textColor: rgb(255, 223, 223);
+  text-align: center;
+    transform-origin: left bottom 0;
+    transform: rotate(90deg) translate(-41px, -7px);
+    line-height: 0.9;
+    font-size: 30pt;
+    color: $textColor;
+    animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include SoftText("LesserOnesRutherford", $textColor, rgb(255, 0, 0));
+    }
+}
+.SnellTxt {
+    transform: rotate(90deg) translate(-28px, -15px);
+    animation: LesserOnesSnellNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include SoftText("LesserOnesSnell", #cccccc, rgb(0, 0, 0));
+    }
+}
+.HillaryTxt {
+    animation: LesserOnesHillaryNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include SoftText("LesserOnesHillary", #fffecc, rgb(255, 245, 0));
+    }
+}
+.TepueaTxt {
+    transform: rotate(90deg) translate(-47px, -15px);
+    animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include SoftText("LesserOnesTepuea", #ccffcd, rgb(21, 198, 12));
+    }
+}
 .mainBody > * {
     padding: 10px;
     flex: 1 100%;
-}
-.lesserContainer {
-    flex-grow: 0;
-    flex-basis: 3%;
-    color: white;
-    border: medium white solid;
-    margin-top: 5px;
 }
 .mainBody {
     border: white medium solid;
@@ -131,11 +162,13 @@ html {
         border: white solid medium;
         flex: 1 1 auto;
         order: 1;
+        display: flex;
+        flex-flow: column;
         //  height: 90%;
         //  width: 25%;
     }
     .center {
-        flex: 3 1 auto;
+        flex: 5 1 auto;
         border: white solid medium;
         order: 2;
     }
@@ -144,8 +177,18 @@ html {
         border: white solid medium;
         flex: 1 1 auto;
         order: 3;
+        display: flex;
+        flex-flow: column;
         //  height: 90%;
         //  width: 25%;
+    }
+    .topBox {
+        flex: 0 0 200px;
+        border: solid white thin;
+    }
+    .bottomBox {
+        flex: 1 1 auto;
+        border: solid white thin;
     }
 }
 .footer {
