@@ -19,3 +19,12 @@ function pulsingTitle() {
     brightness.style.filter =
         "brightness(" + (-  20 * Math.cos((Math.PI / 50) * val) + 20 + 85) + "%)";
 }
+
+// Internet Explorer 6-11
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+// Edge 20+
+//var isEdge = !isIE && !!window.StyleMedia;
+
+if (isIE) {
+  window.location.replace("IEResponse.html");
+}
