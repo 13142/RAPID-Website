@@ -161,26 +161,76 @@ $(document).ready(function() {
             height: 700
         }
     });
-    var wallTop = Matter.Bodies.rectangle(0, 0, 3000, 20, {
+    var wallTop = Matter.Bodies.rectangle(render.options.width / 2, 0, render.options.width + 2, 20, {
         isStatic: true
     });
-    var wallBot = Matter.Bodies.rectangle(0, render.options.height, 3000, 20, {
+    var wallBot = Matter.Bodies.rectangle(render.options.width / 2, render.options.height, render.options.width + 2, 20, {
         isStatic: true
     });
-    var wallLeft = Matter.Bodies.rectangle(0, 0, 20, 3000, {
+    var wallLeft = Matter.Bodies.rectangle(0, render.options.height / 2, 20, render.options.height + 2, {
         isStatic: true
     });
-    var wallRight = Matter.Bodies.rectangle(render.options.width, 0, 20, 3000, {
+    var wallRight = Matter.Bodies.rectangle(render.options.width, render.options.height / 2, 20, render.options.height + 2, {
         isStatic: true
     });
 
-    console.log(engine.world.gravity.scale);
     engine.world.gravity.scale = 0;
+    var mouse1 = Matter.Mouse.create(render.canvas);
+    var mouseCons = Matter.MouseConstraint.create(engine, {
+        mouse: mouse1
+    });
+    var box = Matter.Bodies.rectangle(100, 200, 200, 150, {
+        restitution: 0.8,
+        friction: 0,
+        frictionAir: 0.005,
+        strokeStyle: '#ffffff',
+        sprite: {
+          texture: 'w.png'
+        }
+    });
+    var box2 = Matter.Bodies.rectangle(500, 400, 500, 150, {
+        restitution: 0.8,
+        friction: 0,
+        frictionAir: 0.005,
+        render:{
+          strokeStyle: '#ffffff',
+          sprite: {
+            texture: 'w.png'
+          }
+        }
 
-    var box = Matter.Bodies.rectangle(500, 400, 500, 150);
-    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box]);
-    // run the engine
-    Matter.Engine.run(engine);
+    });
+    box.torque = 10;
+    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2]);
+
+    Math.random
+    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+
+    var AllBodies = [box, box2];
+    render.options.background = 'w.png';
+    render.options.wireframes = false;
+    render.options.showAngleIndicator = false;
+
+    var runner = Matter.Runner.create();
+    Matter.Runner.run(runner, engine);
+    Matter.Events.on(runner, "tick", function(eventCall) {})
+
+    Matter.Events.on(mouseCons, "mousedown", function(eventCall) {
+            if (eventCall.mouse.button == 0) {
+                for (var i = 0; i < AllBodies.length; i++) {
+                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), -1));
+                    console.log(AllBodies[i].sprite);
+                }
+
+            } else if (eventCall.mouse.button == 2) {
+                for (var i = 0; i < AllBodies.length; i++) {
+                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), 1));
+                }
+            }
+        })
+        // run the engine
+        //  Matter.Engine.run(engine);
 
     // run the renderer
     Matter.Render.run(render);
