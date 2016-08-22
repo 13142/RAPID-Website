@@ -36,14 +36,16 @@
         <div class="mainBody">
             <!-- This is the body -->
             <div class="leftCol">
-              <div class="topBox">Top</div>
+
               <div class="bottomBox">Bot</div>
             </div>
-            <div class="center">
-
+            <div class="center" id="gameWindow">
+             <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
             </div>
             <div class="rightCol">
-              <div class="topBox">Top</div>
+              <div class="topBox">
+                <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
+              </div>
               <div class="bottomBox">Bot</div>
             </div>
         </div>
@@ -58,6 +60,8 @@
     <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="../../Code/jquery-ui.js"></script>
     <script type="text/javascript" src="../../Code/jquery.animate-shadow.js"></script>
+    <!-- <script type="text/javascript" src="../../Code/pixi.js"></script> -->
+    <script type="text/javascript" src="../../Code/matter.js"></script>
 
     <script type="text/javascript" src="./Code/Sheppard.js"></script>
 </body>
