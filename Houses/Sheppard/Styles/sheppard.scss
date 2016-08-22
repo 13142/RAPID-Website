@@ -99,8 +99,6 @@ html {
     color: white;
     border: medium white solid;
     margin-top: 5px;
-    //display: flex;
-    //flex-flow: row;
 }
 .vertText {
     text-align: center;
@@ -113,8 +111,8 @@ html {
     white-space: nowrap;
 }
 .RutherfordTxt {
-  $textColor: rgb(255, 223, 223);
-  text-align: center;
+    $textColor: rgb(255, 223, 223);
+    text-align: center;
     transform-origin: left bottom 0;
     transform: rotate(90deg) translate(-41px, -7px);
     line-height: 0.9;
