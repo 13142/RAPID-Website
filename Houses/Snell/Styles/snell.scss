@@ -4,11 +4,10 @@
 }
 body,
 html {
-    background-color: rgb(0, 0, 0);
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: #000023;
+    background-color: #050505;
 }
 #PageWrapper {
     position: absolute;
@@ -85,13 +84,15 @@ html {
     margin: 0 5px;
 }
 .SheppardTitle {
+    $InnerColor: #e4e4e4;
+    $OuterColor: #000;
     text-align: center;
     font-size: 100pt;
     font-family: Mohave;
     padding-top: 10px;
     padding-bottom: 20px;
     margin-top: 5px;
-    color: #cce8ff;
+    color: $InnerColor;
     animation: TitleNeonText 1.5s ease-in-out infinite alternate;
     border: medium white solid;
     flex-grow: 0;
@@ -100,7 +101,7 @@ html {
         cursor: default;
     }
     @at-root {
-         @include SoftText("Title", #cce8ff, rgb(2, 151, 246));
+         @include SoftText("Title",$InnerColor,$OuterColor);
     }
 }
 .lesserContainer {
@@ -130,54 +131,54 @@ html {
     font-size: 30pt;
     color: $InnerColor;
     animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesRutherfordNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+    &:hover {
+        animation: HoverOnesRutherfordNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesRutherford", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesRutherford", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesRutherford", $InnerColor, $OuterColor);
     }
 }
-.SnellTxt {
-    $InnerColor: #cccccc;
-    $OuterColor: #000;
+.SheppardTxt {
+    $InnerColor: #cce8ff;
+    $OuterColor: rgb(2, 151, 246);
     transform: rotate(90deg) translate(-28px, -15px);
-    animation: LesserOnesSnellNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesSnellNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+    animation: LesserOnesSheppardNeonText 1.5s ease-in-out infinite alternate;
+    &:hover {
+        animation: HoverOnesSheppardNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
-         @include SoftText("LesserOnesSnell", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesSnell", $InnerColor, $OuterColor);
+         @include SoftText("LesserOnesSheppard", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesSheppard", $InnerColor, $OuterColor);
     }
 }
 .HillaryTxt {
-  $InnerColor: #fffecc;
-  $OuterColor: rgb(255, 245, 0);
+    $InnerColor: #fffecc;
+    $OuterColor: rgb(255, 245, 0);
     animation: LesserOnesHillaryNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesHillaryNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+    &:hover {
+        animation: HoverOnesHillaryNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesHillary", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesHillary", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesHillary", $InnerColor, $OuterColor);
     }
 }
 .TepueaTxt {
-  $InnerColor: #ccffcd;
-  $OuterColor: rgb(21, 198, 12);
+    $InnerColor: #ccffcd;
+    $OuterColor: rgb(21, 198, 12);
     transform: rotate(90deg) translate(-47px, -15px);
     animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesTepueaNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+    &:hover {
+        animation: HoverOnesTepueaNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesTepuea", #ccffcd, rgb(21, 198, 12));
-         @include GrowText("HoverOnesTepuea", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesTepuea", $InnerColor, $OuterColor);
     }
 }
 .mainBody > * {
@@ -186,7 +187,7 @@ html {
 }
 .mainBody {
     border: white medium solid;
-    background-color: #001542;
+    background-color: #252525;
     flex: 1 1 auto;
     flex-grow: 1;
     flex-shrink: 1;

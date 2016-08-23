@@ -157,12 +157,12 @@ $(document).ready(function() {
         element: document.getElementById("gameWindow"),
         engine: engine,
         options: {
-          //hasBounds: true,
+            //hasBounds: true,
             width: 1080,
             height: 700
         }
     });
-UpdatePhysicsWindow();
+    UpdatePhysicsWindow();
     var wallTop = Matter.Bodies.rectangle(render.canvas.width / 2, 0, render.canvas.width + 2, 20, {
         isStatic: true
     });
@@ -187,18 +187,18 @@ UpdatePhysicsWindow();
         frictionAir: 0.005,
         strokeStyle: '#ffffff',
         sprite: {
-          texture: 'w.png'
+            texture: 'w.png'
         }
     });
     var box2 = Matter.Bodies.rectangle(500, 400, 500, 150, {
         restitution: 0.8,
         friction: 0,
         frictionAir: 0.005,
-        render:{
-          strokeStyle: '#ffffff',
-          sprite: {
-            texture: 'w.png'
-          }
+        render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: 'w.png'
+            }
         }
 
     });
@@ -239,31 +239,35 @@ UpdatePhysicsWindow();
 
     var resizeTimer;
     $(window).resize(function() {
-    clearTimeout(resizeTimer);
-    console.log("gerge");
+        clearTimeout(resizeTimer);
+        console.log("gerge");
 
-    resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
-});
+        resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
+    });
+
     function UpdatePhysicsWindow() {
-      console.log(wallRight);
-      render.canvas.height = (window.innerHeight - 183) / 1.15;
-      render.canvas.width = window.innerWidth / 1.8;
-      if (wallTop) {
-        wallTop.vertices[1].x  = render.canvas.width + 1;
-        wallTop.vertices[2].x  = render.canvas.width + 1;
-        wallBot.vertices[1].y  = render.canvas.height - 10;
-        wallBot.vertices[2].y  = render.canvas.height + 10;
-        wallBot.vertices[0].y  = render.canvas.height - 10;
-        wallBot.vertices[3].y  = render.canvas.height + 10;
-        wallRight.vertices[1].x  = render.canvas.width + 10;
-        wallRight.vertices[2].x  = render.canvas.width + 10;
-        wallRight.vertices[0].x  = render.canvas.width - 10;
-        wallRight.vertices[3].x  = render.canvas.width - 10;
-      }
+        console.log(wallRight);
+        render.canvas.height = (window.innerHeight - 183) / 1.15;
+        render.canvas.width = window.innerWidth / 1.8;
+        if (wallTop) {
+            wallTop.vertices[1].x = render.canvas.width + 1;
+            wallTop.vertices[2].x = render.canvas.width + 1;
+            wallBot.vertices[1].y = render.canvas.height - 10;
+            wallBot.vertices[2].y = render.canvas.height + 10;
+            wallBot.vertices[0].y = render.canvas.height - 10;
+            wallBot.vertices[3].y = render.canvas.height + 10;
+            wallRight.vertices[1].x = render.canvas.width + 10;
+            wallRight.vertices[2].x = render.canvas.width + 10;
+            wallRight.vertices[0].x = render.canvas.width - 10;
+            wallRight.vertices[3].x = render.canvas.width - 10;
+        }
     };
+
+
 });
-
-
+function GoToPageFromSheppard(page) {
+    window.location.href = "../" + page + "/index.html";
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

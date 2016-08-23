@@ -5,24 +5,25 @@
     <meta charset="utf-8">
     <title>RAPID</title>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
-    <link rel="stylesheet" href="Styles/sheppard.min.css">
+    <link rel="stylesheet" href="Styles/snell.min.css">
     <link rel="stylesheet" href="../../Styles/jquery-ui.min.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
   <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
-    <div id="loader">Sheppard</div>
+    <div id="loader">Snell</div>
 
     </div>
   </div>
     <div id="PageWrapper">
         <div class="top-container unselectable">
+          <div class="SnellTitle lesserContainer" onmouseup="GoToPageFromSheppard('Sheppard')">
+              <div class="vertText SheppardTxt">Sheppard</div>
+          </div>
             <div class="SheppardTitle">
-                Sheppard
+                Snell
             </div>
-            <div class="SnellTitle lesserContainer" onmouseup="GoToPageFromSheppard('Snell')">
-                <div class="vertText SnellTxt">Snell</div>
-            </div>
+
             <div class="HillaryTitle lesserContainer" onmouseup="GoToPageFromSheppard('Hillary')">
                 <div class="vertText HillaryTxt">Hillary</div>
             </div>
@@ -63,7 +64,7 @@
     <!-- <script type="text/javascript" src="../../Code/pixi.js"></script> -->
     <script type="text/javascript" src="../../Code/matter.js"></script>
 
-    <script type="text/javascript" src="./Code/Sheppard.js"></script>
+    <script type="text/javascript" src="./Code/Snell.js"></script>
 </body>
 
 </html>
