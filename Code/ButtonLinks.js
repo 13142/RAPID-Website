@@ -41,7 +41,7 @@ function SnellClick(e) {
             duration: 1500,
             easing: "linear"
         });
-        $("#snellGlow").css("z-index", "1000");
+        $("#snellGlow").css("z-index", "10000");
         $(".Snell").css("z-index", "-1");
         setTimeout(function delayed() {
             GoToPage("Snell");
