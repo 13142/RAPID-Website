@@ -135,8 +135,7 @@ $(document).ready(function() {
     });
 
     function UpdatePhysicsWindow() {
-        console.log(wallRight);
-        render.canvas.height = (window.innerHeight - 183) / 1.15;
+        render.canvas.height = $("#gameWindow").height() - 15;//(window.innerHeight - 183) / 1.15 - 20;
         render.canvas.width = window.innerWidth / 1.8;
         if (wallTop) {
             wallTop.vertices[1].x = render.canvas.width + 1;
@@ -151,8 +150,36 @@ $(document).ready(function() {
             wallRight.vertices[3].x = render.canvas.width - 10;
         }
     };
+
+    $("#leftCover").css({
+        top: $("#leftCol").offset().top,
+        left: $("#leftCol").offset().left,
+        width: $("#leftCol").outerWidth(),
+        height: $("#leftCol").outerHeight()
+    });
+
+    $("#rightCover").css({
+        top: $("#rightCol").offset().top,
+        left: $("#rightCol").offset().left,
+        width: $("#rightCol").outerWidth(),
+        height: $("#rightCol").outerHeight()
+    });
+
+    $("#leftCover").click(function() {
+        $(this).addClass("magictime puffOut");
+        setTimeout(function() {
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
+    });
+    $("#rightCover").click(function() {
+        $(this).addClass("magictime puffOut");
+        setTimeout(function() {
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
+    });
 });
 var clicked = false;
+
 function SnellClick(e) {
     if (clicked == false) {
         clicked = true;
@@ -166,7 +193,7 @@ function SnellClick(e) {
             easing: "linear"
         });
         $("#snellGlow").css("z-index", "10000");
-      //  $(".Snell").css("z-index", "-1");
+        //  $(".Snell").css("z-index", "-1");
         setTimeout(function delayed() {
             GoToPageFromSheppard("Snell");
         }, 2000);
@@ -187,7 +214,7 @@ function HillaryClick(e) {
             // done: GoToPage("Hillary")
         });
         $("#hillaryGlow").css("z-index", "10000");
-      //  $(".Hillary").css("z-index", "-1");
+        //  $(".Hillary").css("z-index", "-1");
         setTimeout(function delayed() {
             GoToPageFromSheppard("Hillary");
         }, 2000);
@@ -220,7 +247,7 @@ function TepueaClick(e) {
         $("#tepueaGlow").css("top", e.pageY);
         $("#tepueaGlow").css("box-shadow", "0 0 10px 0 rgba(0, 198, 26, 0.9)");
         $("#tepueaGlow").animate({
-          boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
         }, {
             duration: 1500,
             easing: "linear"
@@ -241,5 +268,8 @@ function getRandomInt(min, max) {
 }
 
 function FadeOut() {
-    $("#loaderWrapper").addClass("loaded");
+    $("#loaderWrapper").addClass("magictime puffOut");
+    setTimeout(function() {
+    $("#loaderWrapper").addClass('loaded');
+}, 1000);
 }

@@ -2,12 +2,13 @@
     font-family: Mohave;
     src: url("../../../Fonts/Mohave.otf");
 }
+$backgroundColor: #050505;
 body,
 html {
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: #050505;
+    background-color: $backgroundColor;
 }
 #PageWrapper {
     position: absolute;
@@ -77,13 +78,21 @@ html {
     visibility: hidden;
     transition: opacity 1s ease-out, visibility 0s linear 1s;
 }
+.TotalContainer {
+  position: fixed;
+  width: 120%;
+  height: 166px;
+  top: 10px;
+  left: -30px;
+  box-shadow: inset 0px -10px 10px 0px $backgroundColor, inset 0px 10px 10px 0px $backgroundColor;
+}
 .top-container {
     flex: 0 1 auto;
     display: flex;
     flex-flow: row;
     margin: 0 5px;
 }
-.SheppardTitle {
+.SnellTitle {
     $InnerColor: #e4e4e4;
     $OuterColor: #000;
     text-align: center;
@@ -94,9 +103,10 @@ html {
     margin-top: 5px;
     color: $InnerColor;
     animation: TitleNeonText 1.5s ease-in-out infinite alternate;
-    border: medium white solid;
+    //border: medium white solid;
     flex-grow: 0;
     flex-basis: 80%;
+    box-shadow: inset 0px -7px 0px 0px $backgroundColor, inset 0px 7px 0px 0px $backgroundColor,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
     &:hover {
         cursor: default;
     }
@@ -108,8 +118,9 @@ html {
     flex-grow: 1;
     flex-basis: 1%;
     color: white;
-    border: medium white solid;
+    //border: medium white solid;
     margin-top: 5px;
+    box-shadow: inset 0px -7px 0px 0px $backgroundColor, inset 0px 7px 0px 0px $backgroundColor,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
 }
 .vertText {
     text-align: center;
@@ -126,7 +137,7 @@ html {
     $OuterColor: rgb(255, 0, 0);
     text-align: center;
     transform-origin: left bottom 0;
-    transform: rotate(90deg) translate(-41px, -7px);
+    transform: rotate(90deg) translate(-41px, -12px);
     line-height: 0.9;
     font-size: 30pt;
     color: $InnerColor;
@@ -143,7 +154,8 @@ html {
 .SheppardTxt {
     $InnerColor: #cce8ff;
     $OuterColor: rgb(2, 151, 246);
-    transform: rotate(90deg) translate(-28px, -15px);
+    transform: rotate(90deg) translate(-44px, -18px);
+    font-size: 35pt;
     animation: LesserOnesSheppardNeonText 1.5s ease-in-out infinite alternate;
     &:hover {
         animation: HoverOnesSheppardNeonText 0.5s ease-in reverse;
@@ -170,7 +182,7 @@ html {
 .TepueaTxt {
     $InnerColor: #ccffcd;
     $OuterColor: rgb(21, 198, 12);
-    transform: rotate(90deg) translate(-47px, -15px);
+    transform: rotate(90deg) translate(-47px, -19px);
     animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
     &:hover {
         animation: HoverOnesTepueaNeonText 0.5s ease-in reverse;
@@ -186,41 +198,57 @@ html {
     flex: 1 100%;
 }
 .mainBody {
-    border: white medium solid;
+    border: white medium none;
     background-color: #252525;
     flex: 1 1 auto;
     flex-grow: 1;
     flex-shrink: 1;
     margin: 0 150px;
+    margin-top: 5px;
+    padding: 0px 10px;
     display: flex;
     flex-flow: row wrap;
+    box-shadow: inset 0px 0px 5px 2px #FFF, 0px 0px 5px 2px #FFF;
+    #leftCover{
+      position: fixed;;
+      background-color: rgb(255, 255, 255);
+    }
+    #rightCover{
+      position: fixed;;
+      background-color: rgb(255, 255, 255);
+    }
     .leftCol {
-        border: white solid medium;
+        //border: white solid medium;
         flex: 1 1 auto;
         order: 1;
         display: flex;
         flex-flow: column;
+        margin-top: 10px;
+
+        margin-bottom: 10px;
         //  height: 90%;
         //  width: 25%;
     }
     .center {
         flex: 0 1 auto;
-        border: white solid medium;
+        //border: white solid medium;
         order: 2;
     }
     .rightCol {
         //margin-left: 150px;
-        border: white solid medium;
+        //border: white solid medium;
         flex: 0 1 auto;
         order: 3;
         display: flex;
         flex-flow: column;
         //  height: 90%;
         //  width: 25%;
+        margin-bottom: 10px
     }
     .topBox {
-        flex: 0 0 200px;
-        border: solid white thin;
+        flex: 0 0 180px;
+        box-shadow: 0 0 5px 0px rgb(255, 255, 255);
+    //    border: solid white thin;
     }
     .bottomBox {
         flex: 1 1 auto;
@@ -228,8 +256,35 @@ html {
     }
 }
 .footer {
-    border: white medium solid;
-    flex: 0 1 50px;
-    margin: 0 5px;
+  //  border: white medium solid;
+  //position: fixed;
+    //background-color: rgb(43, 44, 156);
+    flex: 0 1 40px;
+    margin-top: 10px;
+    //line-height: 70px;
+    //text-align: center;
+    color: white;
+    display: flex;
+    flex-flow:row;
+    padding: 0 2%;
+    background-color: rgba(#ffffff, 0.15);
+    font-size: 8pt;
+    box-shadow: inset 0 5px 5px 0 $backgroundColor;
+    span.left{
+      padding-top: 10px;
+      padding-bottom: 8px;
+      text-align: left;
+      flex-grow: 1;
+      flex-shrink: 1;
+      order: 1;
+    }
+    span.right{
+      padding-top: 15px;
+      padding-bottom: 15px;
+      text-align: right;
+      flex-grow: 1;
+      flex-shrink: 1;
+      order: 2;
+    }
 }
 // wweqwe

@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/snell.min.css">
     <link rel="stylesheet" href="../../Styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../Styles/magic.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
-  <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
-    <div id="loader">Snell</div>
+    <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
+        <div id="loader">Snell</div>
 
     </div>
-  </div>
+    </div>
     <div id="PageWrapper">
+      <div class="TotalContainer"></div>
         <div class="top-container unselectable">
-          <div class="SnellTitle lesserContainer" onmouseup="GoToPageFromSheppard('Sheppard')">
-              <div class="vertText SheppardTxt">Sheppard</div>
-          </div>
-            <div class="SheppardTitle">
+            <div class="SheppardTitle lesserContainer" onmouseup="GoToPageFromSheppard('Sheppard')">
+                <div class="vertText SheppardTxt">Sheppard</div>
+            </div>
+            <div class="SnellTitle">
                 Snell
             </div>
 
@@ -28,7 +30,8 @@
                 <div class="vertText HillaryTxt">Hillary</div>
             </div>
             <div class="RutherfordTitle lesserContainer" onmouseup="GoToPageFromSheppard('Rutherford')">
-                <div class="vertText RutherfordTxt">Ruther<br/>ford</div>
+                <div class="vertText RutherfordTxt">Ruther
+                    <br/>ford</div>
             </div>
             <div class="TepueaTitle lesserContainer" onmouseup="GoToPageFromSheppard('Tepuea')">
                 <div class="vertText TepueaTxt">Te Puea</div>
@@ -37,21 +40,24 @@
         <div class="mainBody">
             <!-- This is the body -->
             <div class="leftCol">
-
-              <div class="bottomBox">Bot</div>
+                <div id="leftCover"></div>
+                <div class="bottomBox">Bot</div>
             </div>
             <div class="center" id="gameWindow">
-             <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
+                <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
             </div>
             <div class="rightCol">
-              <div class="topBox">
-                <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
-              </div>
-              <div class="bottomBox">Bot</div>
+                <div class="topBox">
+                    <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
+                </div>
+                <div id="rightCover"></div>
+                <div class="bottomBox">Bot</div>
             </div>
         </div>
         <div class="footer">
-
+            <span class="left">Created by Rex
+          <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
+            <span class="right">Created for Hillcrest High</span>
         </div>
     </div>
     <div class="clear">
