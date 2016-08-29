@@ -19,21 +19,25 @@
     <div id="PageWrapper">
       <div class="TotalContainer"></div>
         <div class="top-container unselectable">
-            <div class="SheppardTitle lesserContainer" onmouseup="GoToPageFromSheppard('Sheppard')">
+            <div class="SheppardTitle lesserContainer" onmouseup="SheppardClick(event)">
+				<div id="sheppardGlow" style="position: absolute"></div>
                 <div class="vertText SheppardTxt">Sheppard</div>
             </div>
             <div class="SnellTitle">
                 Snell
             </div>
 
-            <div class="HillaryTitle lesserContainer" onmouseup="GoToPageFromSheppard('Hillary')">
+            <div class="HillaryTitle lesserContainer" onmouseup="HillaryClick(event)">
+                <div id="hillaryGlow" style="position: absolute"></div>
                 <div class="vertText HillaryTxt">Hillary</div>
             </div>
-            <div class="RutherfordTitle lesserContainer" onmouseup="GoToPageFromSheppard('Rutherford')">
+            <div class="RutherfordTitle lesserContainer" onmouseup="RutherfordClick(event)">
+                <div id="rutherfordGlow" style="position: absolute"></div>
                 <div class="vertText RutherfordTxt">Ruther
                     <br/>ford</div>
             </div>
-            <div class="TepueaTitle lesserContainer" onmouseup="GoToPageFromSheppard('Tepuea')">
+            <div class="TepueaTitle lesserContainer" onmouseup="TepueaClick(event)">
+                <div id="tepueaGlow" style="position: absolute"></div>
                 <div class="vertText TepueaTxt">Te Puea</div>
             </div>
         </div>
@@ -41,7 +45,7 @@
             <!-- This is the body -->
             <div class="leftCol">
                 <div id="leftCover"></div>
-                <div class="bottomBox">Bot</div>
+                <div class="bottomBox" id="leftCol">Bot</div>
             </div>
             <div class="center" id="gameWindow">
                 <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
@@ -51,7 +55,7 @@
                     <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
                 </div>
                 <div id="rightCover"></div>
-                <div class="bottomBox">Bot</div>
+                <div class="bottomBox" id="rightCol">Bot</div>
             </div>
         </div>
         <div class="footer">

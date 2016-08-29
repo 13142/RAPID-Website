@@ -6,13 +6,13 @@ $(document).ready(function() {
         Composites = Matter.Composites,
         Common = Matter.Common;
 
+
     var engine = Matter.Engine.create();
 
     var render = Matter.Render.create({
         element: document.getElementById("gameWindow"),
         engine: engine,
         options: {
-            //hasBounds: true,
             width: 1080,
             height: 700
         }
@@ -21,8 +21,8 @@ $(document).ready(function() {
     var wallTop = Matter.Bodies.rectangle(render.canvas.width / 2, 0, render.canvas.width + 2, 20, {
         isStatic: true
     });
-    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, render.canvas.width + 2, 20, {
-        isStatic: true
+    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, 5000, 20, {
+        isStatic: true 	
     });
     var wallLeft = Matter.Bodies.rectangle(0, render.canvas.height / 2, 20, 5000, {
         isStatic: true
@@ -36,36 +36,70 @@ $(document).ready(function() {
     var mouseCons = Matter.MouseConstraint.create(engine, {
         mouse: mouse1
     });
-    var box = Matter.Bodies.rectangle(100, 200, 200, 150, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        strokeStyle: '#ffffff',
-        sprite: {
-            texture: 'w.png'
-        }
-    });
-    var box2 = Matter.Bodies.rectangle(500, 400, 500, 150, {
+    var box = Matter.Bodies.rectangle(100, 200, 300, 50, {
         restitution: 0.8,
         friction: 0,
         frictionAir: 0.005,
         render: {
             strokeStyle: '#ffffff',
             sprite: {
-                texture: 'w.png'
+                texture: 'Media/MannerWords.png',
+                xScale: 0.3,
+                yScale: 0.3,
+            }
+        }
+    });
+    var box3 = Matter.Bodies.rectangle(700, 600, 300, 50, {
+        restitution: 0.8,
+        friction: 0,
+        frictionAir: 0.005,
+        render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: 'Media/KindnessWords.png',
+                xScale: 0.3,
+                yScale: 0.3,
+            }
+        }
+    });
+    var box4 = Matter.Bodies.rectangle(900, 500, 300, 50, {
+        restitution: 0.4,
+        friction: 0,
+        frictionAir: 0.005,
+        render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: 'Media/MindfulWords.png',
+                xScale: 0.3,
+                yScale: 0.3,
+            }
+        }
+    });
+    var box2 = Matter.Bodies.rectangle(450, 300, 500, 150, {
+        restitution: 0.8,
+        friction: 0,
+        frictionAir: 0.005,
+        render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: 'Media/RespectWords.png',
+                xScale: 0.6,
+                yScale: 0.6,
             }
         }
 
     });
     box.torque = 10;
-    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2]);
+    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2, box3, box4]);
 
-    Math.random
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
 
-    var AllBodies = [box, box2];
-    render.options.background = 'w.png';
+    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+    Matter.Body.applyForce(box3, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+    Matter.Body.applyForce(box2, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+    Matter.Body.applyForce(box4, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
+
+    var AllBodies = [box, box2, box3, box4];
+    render.options.background = "#000000";
     render.options.wireframes = false;
     render.options.showAngleIndicator = false;
 
@@ -95,14 +129,15 @@ $(document).ready(function() {
     var resizeTimer;
     $(window).resize(function() {
         clearTimeout(resizeTimer);
-        console.log("gerge");
 
         resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
     });
-
+	var CoverResizeT;
     function UpdatePhysicsWindow() {
-        render.canvas.height = $("#gameWindow").height() - 10;
-        render.canvas.width = window.innerWidth / 1.8;
+	CoverResizeT = setTimeout(ResizeCovers, 300);
+		ResizeCovers();
+        render.canvas.height = $("#gameWindow").height() - 15;//(window.innerHeight - 183) / 1.15 - 20;
+        render.canvas.width = window.innerWidth / 1.2 - 550	;
         if (wallTop) {
             wallTop.vertices[1].x = render.canvas.width + 1;
             wallTop.vertices[2].x = render.canvas.width + 1;
@@ -143,8 +178,102 @@ $(document).ready(function() {
         $("#loaderWrapper").addClass('loaded');
     }, 1000);
     });
-
 });
+var clicked = false;
+function ResizeCovers(){
+$("#leftCover").css({
+        top: $("#leftCol").offset().top,
+        left: $("#leftCol").offset().left,
+        width: $("#leftCol").outerWidth(),
+        height: $("#leftCol").outerHeight()
+    });
+
+    $("#rightCover").css({
+        top: $("#rightCol").offset().top,
+        left: $("#rightCol").offset().left,
+        width: $("#rightCol").outerWidth(),
+        height: $("#rightCol").outerHeight()
+    });
+}
+function SnellClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#snellGlow").css("left", e.pageX);
+        $("#snellGlow").css("top", e.pageY);
+        $("#snellGlow").css("box-shadow", "0 0 10px 0 rgba(0, 0, 0, 0.9)");
+        $("#snellGlow").animate({
+            boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#snellGlow").css("z-index", "10000");
+        //  $(".Snell").css("z-index", "-1");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Snell");
+        }, 2000);
+    }
+}
+
+function HillaryClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#hillaryGlow").css("left", e.pageX);
+        $("#hillaryGlow").css("top", e.pageY);
+        $("#hillaryGlow").css("box-shadow", "0 0 10px 0 rgba(250, 255, 0, 0.9)");
+        $("#hillaryGlow").animate({
+            boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear",
+            // done: GoToPage("Hillary")
+        });
+        $("#hillaryGlow").css("z-index", "10000");
+        //  $(".Hillary").css("z-index", "-1");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Hillary");
+        }, 2000);
+    }
+}
+
+function RutherfordClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#rutherfordGlow").css("left", e.pageX);
+        $("#rutherfordGlow").css("top", e.pageY);
+        $("#rutherfordGlow").css("box-shadow", "0 0 10px 0 rgba(255, 0, 0, 0.9)");
+        $("#rutherfordGlow").animate({
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#rutherfordGlow").css("z-index", "1000");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Rutherford");
+        }, 2000);
+    }
+}
+
+function TepueaClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#tepueaGlow").css("left", e.pageX);
+        $("#tepueaGlow").css("top", e.pageY);
+        $("#tepueaGlow").css("box-shadow", "0 0 10px 0 rgba(0, 198, 26, 0.9)");
+        $("#tepueaGlow").animate({
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#tepueaGlow").css("z-index", "1000");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Tepuea");
+        }, 2000);
+    }
+}
+
 function GoToPageFromSheppard(page) {
     window.location.href = "../" + page + "/index.html";
 }
@@ -155,6 +284,7 @@ function getRandomInt(min, max) {
 
 function FadeOut() {
     $("#loaderWrapper").addClass("magictime puffOut");
+	ResizeCovers();
     setTimeout(function() {
     $("#loaderWrapper").addClass('loaded');
 }, 1000);

@@ -21,8 +21,8 @@ $(document).ready(function() {
     var wallTop = Matter.Bodies.rectangle(render.canvas.width / 2, 0, render.canvas.width + 2, 20, {
         isStatic: true
     });
-    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, render.canvas.width + 2, 20, {
-        isStatic: true
+    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, 5000, 20, {
+        isStatic: true 	
     });
     var wallLeft = Matter.Bodies.rectangle(0, render.canvas.height / 2, 20, 5000, {
         isStatic: true
@@ -129,14 +129,15 @@ $(document).ready(function() {
     var resizeTimer;
     $(window).resize(function() {
         clearTimeout(resizeTimer);
-        console.log("gerge");
 
         resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
     });
-
+	var CoverResizeT;
     function UpdatePhysicsWindow() {
+	CoverResizeT = setTimeout(ResizeCovers, 300);
+		ResizeCovers();
         render.canvas.height = $("#gameWindow").height() - 15;//(window.innerHeight - 183) / 1.15 - 20;
-        render.canvas.width = window.innerWidth / 1.8;
+        render.canvas.width = window.innerWidth / 1.2 - 550	;
         if (wallTop) {
             wallTop.vertices[1].x = render.canvas.width + 1;
             wallTop.vertices[2].x = render.canvas.width + 1;
@@ -179,7 +180,21 @@ $(document).ready(function() {
     });
 });
 var clicked = false;
+function ResizeCovers(){
+$("#leftCover").css({
+        top: $("#leftCol").offset().top,
+        left: $("#leftCol").offset().left,
+        width: $("#leftCol").outerWidth(),
+        height: $("#leftCol").outerHeight()
+    });
 
+    $("#rightCover").css({
+        top: $("#rightCol").offset().top,
+        left: $("#rightCol").offset().left,
+        width: $("#rightCol").outerWidth(),
+        height: $("#rightCol").outerHeight()
+    });
+}
 function SnellClick(e) {
     if (clicked == false) {
         clicked = true;
@@ -269,6 +284,7 @@ function getRandomInt(min, max) {
 
 function FadeOut() {
     $("#loaderWrapper").addClass("magictime puffOut");
+	ResizeCovers();
     setTimeout(function() {
     $("#loaderWrapper").addClass('loaded');
 }, 1000);
