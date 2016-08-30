@@ -3,6 +3,7 @@
     src: url("../../../Fonts/Mohave.otf");
 }
 $backgroundColor: #000023;
+
 body,
 html {
     background-color: rgb(0, 0, 0);
@@ -10,7 +11,9 @@ html {
     width: 100%;
     margin: 0;
     background-color: $backgroundColor;
+    overflow: hidden;
 }
+
 #PageWrapper {
     position: absolute;
     display: flex;
@@ -25,6 +28,7 @@ html {
         from {
             text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor;
         }
+
         to {
             text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor;
         }
@@ -35,6 +39,7 @@ html {
         from {
             text-shadow: 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 70px $inOuterColor;
         }
+
         to {
             text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
         }
@@ -45,11 +50,13 @@ html {
         from {
             text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor;
         }
+
         to {
             text-shadow: 0 0 10px $inInnerColor, 0 0 3px $inInnerColor,0 0 2px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 70px $inOuterColor;
         }
     }
 }
+
 #loaderWrapper {
     position: fixed;
     top: 0;
@@ -59,6 +66,7 @@ html {
     background: #ffffff;
     z-index: 1000;
 }
+
 #loader {
     text-align: center;
     position: absolute;
@@ -74,26 +82,30 @@ html {
     }
     width: 100%;
 }
+
 .TotalContainer {
-  position: fixed;
-  width: 120%;
-  height: 166px;
-  top: 10px;
-  left: -30px;
-  box-shadow: inset 0px -10px 10px 0px $backgroundColor, inset 0px 10px 10px 0px $backgroundColor;
+    position: fixed;
+    width: 120%;
+    height: 166px;
+    top: 10px;
+    left: -30px;
+    box-shadow: inset 0 -10px 10px 0 $backgroundColor, inset 0 10px 10px 0 $backgroundColor;
 }
 $DarkSide: rgba(255, 255, 255, 0.7);
+
 .loaded {
     opacity: 0;
     visibility: hidden;
     //transition: opacity 1s ease-out, visibility 0s linear 1s;
 }
+
 .top-container {
     flex: 0 0 182px;
     display: flex;
     flex-flow: row;
-    margin: 0 0px;
+    margin: 0;
 }
+
 .SheppardTitle {
     text-align: center;
     font-size: 100pt;
@@ -102,12 +114,11 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     padding-bottom: 20px;
     margin-top: 5px;
     color: #cce8ff;
-    animation: TitleNeonText 1.5s ease-in-out infinite alternate;
-//    border: medium white solid;
+    animation: TitleNeonText 1.5s ease-in-out infinite alternate; //    border: medium white solid;
     flex-grow: 0;
     flex-basis: 80%;
+    box-shadow: inset 0 -7px 0 0 #000023, inset 0 7px 0 0 #000023,inset -5px 0 5px 1px rgba(255,255,255,0.7),inset 5px 0 5px 1px rgba(255,255,255,0.7);
 
-    box-shadow: inset 0px -7px 0px 0px #000023, inset 0px 7px 0px 0px #000023,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
     &:hover {
         cursor: default;
     }
@@ -115,14 +126,16 @@ $DarkSide: rgba(255, 255, 255, 0.7);
          @include SoftText("Title", #cce8ff, rgb(2, 151, 246));
     }
 }
+
 .lesserContainer {
     flex-grow: 1;
     flex-basis: 1%;
     color: white;
-  //  border: medium white solid;
+    //  border: medium white solid;
     margin-top: 5px;
-    box-shadow: inset 0px -7px 0px 0px #000023, inset 0px 7px 0px 0px #000023,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
+    box-shadow: inset 0 -7px 0 0 #000023, inset 0 7px 0 0 #000023,inset -5px 0 5px 1px rgba(255,255,255,0.7),inset 5px 0 5px 1px rgba(255,255,255,0.7);
 }
+
 .vertText {
     text-align: center;
     transform: rotate(90deg) translate(-45px, -15px);
@@ -133,6 +146,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     position: fixed;
     white-space: nowrap;
 }
+
 .RutherfordTxt {
     $InnerColor: rgb(255, 223, 223);
     $OuterColor: rgb(255, 0, 0);
@@ -143,123 +157,147 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     font-size: 30pt;
     color: $InnerColor;
     animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesRutherfordNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+
+    &:hover {
+        animation: HoverOnesRutherfordNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesRutherford", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesRutherford", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesRutherford", $InnerColor, $OuterColor);
     }
 }
+
 .SnellTxt {
     $InnerColor: #cccccc;
     $OuterColor: #000;
     transform: rotate(90deg) translate(-25px, -18px);
     animation: LesserOnesSnellNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesSnellNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+
+    &:hover {
+        animation: HoverOnesSnellNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesSnell", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesSnell", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesSnell", $InnerColor, $OuterColor);
     }
 }
+
 .HillaryTxt {
-  $InnerColor: #fffecc;
-  $OuterColor: rgb(255, 245, 0);
+    $InnerColor: #fffecc;
+    $OuterColor: rgb(255, 245, 0);
     animation: LesserOnesHillaryNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesHillaryNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+
+    &:hover {
+        animation: HoverOnesHillaryNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesHillary", $InnerColor, $OuterColor);
-         @include GrowText("HoverOnesHillary", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesHillary", $InnerColor, $OuterColor);
     }
 }
+
 .TepueaTxt {
-  $InnerColor: #ccffcd;
-  $OuterColor: rgb(21, 198, 12);
+    $InnerColor: #ccffcd;
+    $OuterColor: rgb(21, 198, 12);
     transform: rotate(90deg) translate(-47px, -19px);
     animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
-    &:hover{
-      animation: HoverOnesTepueaNeonText 0.5s ease-in reverse;
-      text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+
+    &:hover {
+        animation: HoverOnesTepueaNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
     }
     @at-root {
          @include SoftText("LesserOnesTepuea", #ccffcd, rgb(21, 198, 12));
-         @include GrowText("HoverOnesTepuea", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesTepuea", $InnerColor, $OuterColor);
     }
 }
-.mainBody > * {
-    padding: 10px;
-    flex: 1 100%;
+// .mainBody > * {
+//     padding: 10px;
+//     flex: 1 100%;
+// }
+.secondBody{
+  position: fixed;
+  background-color: #001542;
+  flex: 1 1 auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  //margin: 5px 150px 0;
+  padding: 10px;
+  display: flex;
+  flex-flow: row;
+  //box-shadow: inset 0 0 5px 2px #FFF, 0 0 5px 2px #FFF;
+  .innerBoxesCol {
+      background-color: none;
+      display: flex;
+      flex-flow: column;
+      padding: none;
+      //pointer-events: none;
+  }
+
+  .innerBoxesRow {
+      // background-color: rgb(215, 235, 255);
+      //
+      // &:hover {
+      //     background-color: rgb(149, 189, 230);
+      //
+      //     &:active {
+      //         background-color: rgb(24, 107, 193);
+      //     }
+      // }
+  }
 }
 .mainBody {
     border: white medium none;
-    background-color: #001542;
+    //background-color: #001542;
+    background-color: none;
+    z-index: 5;
     flex: 1 1 auto;
     flex-grow: 1;
     flex-shrink: 1;
-    margin: 0 150px;
-    margin-top: 5px;
-    padding: 0px 10px;
+    margin: 5px 150px 0;
+    padding: 10px;
     display: flex;
-    flex-flow: row wrap;
-    box-shadow: inset 0px 0px 5px 2px #FFF, 0px 0px 5px 2px #FFF;
-    #leftCover{
-      position: fixed;;
-      background-color: rgb(255, 255, 255);
-    }
-    #rightCover{
-      position: fixed;;
-      background-color: rgb(255, 255, 255);
-    }
-    .leftCol {
-        //border: white solid medium;
-        flex: 1 1 auto;
-        order: 1;
-        display: flex;
-        flex-flow: column;
-        margin-top: 10px;
+    flex-flow: row;
+    box-shadow: inset 0 0 5px 2px #FFF, 0 0 5px 2px #FFF;
 
-        margin-bottom: 10px;
-        //  height: 90%;
-        //  width: 25%;
-    }
-    .center {
-        flex: 0 1 auto;
-        //border: white solid medium;
-        order: 2;
-        margin-top: 10px;
-    }
-    .rightCol {
-      margin-top: 10px;
-        //margin-left: 150px;
-        //border: white solid medium;
-        flex: 0 1 auto;
-        order: 3;
-        display: flex;
-        flex-flow: column;
-        //  height: 90%;
-        //  width: 25%;
-        margin-bottom: 10px
-    }
     .topBox {
         flex: 0 0 180px;
-        box-shadow: 0 0 5px 0px rgb(255, 255, 255);
-    //    border: solid white thin;
+        box-shadow: 0 0 5px 0 rgb(215, 235, 255);
+        //    border: solid white thin;
     }
+
     .bottomBox {
         flex: 1 1 auto;
         border: solid white thin;
     }
+
+    .innerBoxesCol {
+        background-color: none;
+        display: flex;
+        flex-flow: column;
+        padding: none;
+        //pointer-events: none;
+    }
+
+    .innerBoxesRow {
+        background-color: rgb(215, 235, 255);
+
+        &:hover {
+            background-color: rgb(149, 189, 230);
+
+            &:active {
+                background-color: rgb(24, 107, 193);
+            }
+        }
+    }
 }
+
 .footer {
-  //  border: white medium solid;
-  //position: fixed;
+    //  border: white medium solid;
+    //position: fixed;
     //background-color: rgb(43, 44, 156);
     flex: 0 1 40px;
     margin-top: 10px;
@@ -267,26 +305,28 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     //text-align: center;
     color: white;
     display: flex;
-    flex-flow:row;
+    flex-flow: row;
     padding: 0 2%;
     background-color: rgba(#ffffff, 0.15);
     font-size: 8pt;
     box-shadow: inset 0 5px 5px 0 $backgroundColor;
-    span.left{
-      padding-top: 10px;
-      padding-bottom: 8px;
-      text-align: left;
-      flex-grow: 1;
-      flex-shrink: 1;
-      order: 1;
+
+    span.left {
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-align: left;
+        flex-grow: 1;
+        flex-shrink: 1;
+        order: 1;
     }
-    span.right{
-      padding-top: 15px;
-      padding-bottom: 15px;
-      text-align: right;
-      flex-grow: 1;
-      flex-shrink: 1;
-      order: 2;
+
+    span.right {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        text-align: right;
+        flex-grow: 1;
+        flex-shrink: 1;
+        order: 2;
     }
 }
 // wweqwe

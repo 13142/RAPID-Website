@@ -1,200 +1,65 @@
-document.getElementById("sheppardPortrait").playbackRate = 1.6;
+//document.getElementById("sheppardPortrait").playbackRate = 1.6;
 $(document).ready(function() {
-    var canvas = document.getElementById("gameWindow");
-    var World = Matter.World,
-        Bodies = Matter.Bodies,
-        Composites = Matter.Composites,
-        Common = Matter.Common;
-
-
-    var engine = Matter.Engine.create();
-
-    var render = Matter.Render.create({
-        element: document.getElementById("gameWindow"),
-        engine: engine,
-        options: {
-            width: 1080,
-            height: 700
-        }
-    });
-    UpdatePhysicsWindow();
-    var wallTop = Matter.Bodies.rectangle(render.canvas.width / 2, 0, render.canvas.width + 2, 20, {
-        isStatic: true
-    });
-    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, 5000, 20, {
-        isStatic: true 	
-    });
-    var wallLeft = Matter.Bodies.rectangle(0, render.canvas.height / 2, 20, 5000, {
-        isStatic: true
-    });
-    var wallRight = Matter.Bodies.rectangle(render.canvas.width, render.canvas.height / 2, 20, 5000, {
-        isStatic: true
-    });
-
-    engine.world.gravity.scale = 0;
-    var mouse1 = Matter.Mouse.create(render.canvas);
-    var mouseCons = Matter.MouseConstraint.create(engine, {
-        mouse: mouse1
-    });
-    var box = Matter.Bodies.rectangle(100, 200, 300, 50, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/MannerWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
+$(".secondBody").css("top", $(".mainBody").offset().top);
+$(".secondBody").css("left", $(".mainBody").offset().left);
+$(".secondBody").css("width", $(".mainBody").width());
+$(".secondBody").css("height", $(".mainBody").height());
+var randomRows = GetRandomInt(3,6);
+var randomCol = GetRandomInt(3,6);
+    for (var y = 0; y < randomRows; y++) {
+        var randomHeight = GetRandomArbitrary(1, 4);
+        var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+        var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+        $(".mainBody").append(follow);
+        $(".secondBody").append(follow2);
+        for (var x = 0; x < randomCol; x++) {
+            if (true) {
+                var randomWidth = GetRandomArbitrary(1, 4);
+                var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='flex: " + randomWidth + " 0 auto'></div>";
+                $("#vertBox-" + y).append(xfollow);
+                $("#vertBox2-" + y).append(xfollow);
             }
+            // } else {
+            //     var value = (Math.random() * ((100 / divide) + 20) + ((100 / divide) - 20))
+            //     total += value;
+            //     var follow = "";
+            //     if (total > 100) {
+            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 1 1 " + (100 - (total - value)) + "%'></div>";
+            //         total = 0;
+            //         //
+            //         $(".mainBody").append(follow);
+            //         break;
+            //     } else {
+            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 0 0 " + value + "%'></div>";
+            //         $(".mainBody").append(follow);
+            //     }
+
+
+            //flo = (Math.random() >= 0.5);
         }
-    });
-    var box3 = Matter.Bodies.rectangle(700, 600, 300, 50, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/KindnessWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
-            }
-        }
-    });
-    var box4 = Matter.Bodies.rectangle(900, 500, 300, 50, {
-        restitution: 0.4,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/MindfulWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
-            }
-        }
-    });
-    var box2 = Matter.Bodies.rectangle(450, 300, 500, 150, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/RespectWords.png',
-                xScale: 0.6,
-                yScale: 0.6,
-            }
-        }
+    }
 
-    });
-    box.torque = 10;
-    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2, box3, box4]);
-
-
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box3, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box2, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box4, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-
-    var AllBodies = [box, box2, box3, box4];
-    render.options.background = "#000000";
-    render.options.wireframes = false;
-    render.options.showAngleIndicator = false;
-
-    var runner = Matter.Runner.create();
-    Matter.Runner.run(runner, engine);
-    Matter.Events.on(runner, "tick", function(eventCall) {})
-
-    Matter.Events.on(mouseCons, "mousedown", function(eventCall) {
-            if (eventCall.mouse.button == 0) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), -1));
-                    console.log(AllBodies[i].sprite);
-                }
-
-            } else if (eventCall.mouse.button == 2) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), 1));
-                }
-            }
-        })
-        // run the engine
-        //  Matter.Engine.run(engine);
-
-    // run the renderer
-    Matter.Render.run(render);
-
-    var resizeTimer;
-    $(window).resize(function() {
-        clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
-    });
-	var CoverResizeT;
-    function UpdatePhysicsWindow() {
-	CoverResizeT = setTimeout(ResizeCovers, 300);
-		ResizeCovers();
-        render.canvas.height = $("#gameWindow").height() - 15;//(window.innerHeight - 183) / 1.15 - 20;
-        render.canvas.width = window.innerWidth / 1.2 - 550	;
-        if (wallTop) {
-            wallTop.vertices[1].x = render.canvas.width + 1;
-            wallTop.vertices[2].x = render.canvas.width + 1;
-            wallBot.vertices[1].y = render.canvas.height - 10;
-            wallBot.vertices[2].y = render.canvas.height + 10;
-            wallBot.vertices[0].y = render.canvas.height - 10;
-            wallBot.vertices[3].y = render.canvas.height + 10;
-            wallRight.vertices[1].x = render.canvas.width + 10;
-            wallRight.vertices[2].x = render.canvas.width + 10;
-            wallRight.vertices[0].x = render.canvas.width - 10;
-            wallRight.vertices[3].x = render.canvas.width - 10;
-        }
-    };
-
-    $("#leftCover").css({
-        top: $("#leftCol").offset().top,
-        left: $("#leftCol").offset().left,
-        width: $("#leftCol").outerWidth(),
-        height: $("#leftCol").outerHeight()
-    });
-
-    $("#rightCover").css({
-        top: $("#rightCol").offset().top,
-        left: $("#rightCol").offset().left,
-        width: $("#rightCol").outerWidth(),
-        height: $("#rightCol").outerHeight()
-    });
-
-    $("#leftCover").click(function() {
+    $(".innerBoxesRow").click(function() {
         $(this).addClass("magictime puffOut");
+        var thisIs = this;
         setTimeout(function() {
-        $("#loaderWrapper").addClass('loaded');
-    }, 1000);
-    });
-    $("#rightCover").click(function() {
-        $(this).addClass("magictime puffOut");
-        setTimeout(function() {
-        $("#loaderWrapper").addClass('loaded');
-    }, 1000);
+            $(thisIs).addClass('loaded');
+            $(thisIs).css("pointerEvents", "none");
+          //  $(thisIs).css("position", "fixed");
+        }, 1000);
     });
 });
 var clicked = false;
-function ResizeCovers(){
-$("#leftCover").css({
-        top: $("#leftCol").offset().top,
-        left: $("#leftCol").offset().left,
-        width: $("#leftCol").outerWidth(),
-        height: $("#leftCol").outerHeight()
-    });
 
-    $("#rightCover").css({
-        top: $("#rightCol").offset().top,
-        left: $("#rightCol").offset().left,
-        width: $("#rightCol").outerWidth(),
-        height: $("#rightCol").outerHeight()
-    });
+function GetRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
 }
+function GetRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 function SnellClick(e) {
     if (clicked == false) {
         clicked = true;
@@ -284,8 +149,8 @@ function getRandomInt(min, max) {
 
 function FadeOut() {
     $("#loaderWrapper").addClass("magictime puffOut");
-	ResizeCovers();
+    //ResizeCovers();
     setTimeout(function() {
-    $("#loaderWrapper").addClass('loaded');
-}, 1000);
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
 }
