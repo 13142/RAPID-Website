@@ -6,51 +6,65 @@
     <title>RAPID</title>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/sheppard.min.css">
-    <link rel="stylesheet" href="../../Styles/jquery-ui.min.css">
+    <!-- <link rel="stylesheet" href="../../Styles/jquery-ui.min.css"> -->
+    <link rel="stylesheet" href="../../Styles/magic.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
-  <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
-    <div id="loader">Sheppard</div>
+    <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
+        <div id="loader">Sheppard</div>
 
     </div>
-  </div>
+    </div>
     <div id="PageWrapper">
-        <div class="top-container unselectable">
+        <div class="TotalContainer" id="tester"></div>
+        <div class="top-container unselectable" >
             <div class="SheppardTitle">
                 Sheppard
             </div>
-            <div class="SnellTitle lesserContainer">
+            <div class="SnellTitle lesserContainer" onmouseup="SnellClick(event)">
+                <div id="snellGlow" style="position: absolute"></div>
                 <div class="vertText SnellTxt">Snell</div>
             </div>
-            <div class="HillaryTitle lesserContainer">
+            <div class="HillaryTitle lesserContainer" onmouseup="HillaryClick(event)">
+                <div id="hillaryGlow" style="position: absolute"></div>
                 <div class="vertText HillaryTxt">Hillary</div>
             </div>
-            <div class="RutherfordTitle lesserContainer">
-                <div class="vertText RutherfordTxt">Ruther<br/>ford</div>
+            <div class="RutherfordTitle lesserContainer" onmouseup="RutherfordClick(event)">
+                <div id="rutherfordGlow" style="position: absolute"></div>
+                <div class="vertText RutherfordTxt">Ruther
+                    <br/>ford</div>
             </div>
-            <div class="TepueaTitle lesserContainer">
+            <div class="TepueaTitle lesserContainer" onmouseup="TepueaClick(event)">
+                <div id="tepueaGlow" style="position: absolute"></div>
                 <div class="vertText TepueaTxt">Te Puea</div>
             </div>
         </div>
+        <div class="secondBody">
+
+        </div>
         <div class="mainBody">
             <!-- This is the body -->
-            <div class="leftCol">
-
-              <div class="bottomBox">Bot</div>
+            <!-- <div class="leftCol" >
+                <div id="leftCover"></div>
+                <div class="bottomBox" id="leftCol">Bot</div>
             </div>
+
             <div class="center" id="gameWindow">
-             <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
             </div>
             <div class="rightCol">
-              <div class="topBox">
-                <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
-              </div>
-              <div class="bottomBox">Bot</div>
-            </div>
+                <div class="topBox">
+                    <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
+                </div>
+                <div id="rightCover"></div>
+                <div class="bottomBox" id="rightCol">Bot</div>
+            </div> -->
+
         </div>
         <div class="footer">
-
+          <span class="left">Created by Rex
+          <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
+          <span class="right">Created for Hillcrest High</span>
         </div>
     </div>
     <div class="clear">

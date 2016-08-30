@@ -1,245 +1,156 @@
-document.getElementById("sheppardPortrait").playbackRate = 1.6;
+//document.getElementById("sheppardPortrait").playbackRate = 1.6;
 $(document).ready(function() {
-    var canvas = document.getElementById("gameWindow");
-    var World = Matter.World,
-        Bodies = Matter.Bodies,
-        Composites = Matter.Composites,
-        Common = Matter.Common;
-    // var stage = new PIXI.Container();
-    // var renderer = PIXI.autoDetectRenderer(1080, 700, {
-    //     backgroundColor: 0x00c9ff,
-    //     antialias: true
-    // });
-    //
-    // document.getElementById("gameWindow").appendChild(renderer.view);
-    // //var graphics = new PIXI.Graphics();
-    //
-    // // graphics.beginFill(0xffffff);
-    // // var playerS = graphics.drawCircle(60, 80, 15);
-    // // graphics.endFill();
-    // var player;
-    // var speed = 150;
-    // var wKeyListener = keyboard(87);
-    // var aKeyListener = keyboard(65);
-    // var sKeyListener = keyboard(83);
-    // var dKeyListener = keyboard(68);
-    // PIXI.loader.add('whiteCircle', "Media/whiteCircle.png").load(function(loader, resources) {
-    //     // This creates a texture from a 'bunny.png' image.
-    //     graphics = new PIXI.Graphics();
-    //     graphics.beginFill(0xffffff);
-    //     player = graphics.drawCircle(40, 40, 20);
-    //     graphics.endFill();
-    //     //new PIXI.Sprite(PIXI.loader.resources.whiteCircle.texture);
-    //
-    //     enemyGraphics = new PIXI.Graphics();
-    //     enemyGraphics.beginFill(0xff0000);
-    //     for (var i = 0; i < 20; i++) {
-    //        enemyGraphics.drawCircle(getRandomInt(20, 1000), getRandomInt(20, 650), 18);
-    //     }
-    //     enemyGraphics.endFill();
-    //     // Setup the position and scale of the bunny
-    //     player.x = 400;
-    //     player.y = 300;
-    //
-    //     // whiteCircle.scale.x = 2;
-    //     // whiteCircle.scale.y = 2;
-    //     player.vx = 0;
-    //     player.vy = 0;
-    //     // Add the bunny to the scene we are building.
-    //     stage.addChild(player);
-    //     stage.addChild(enemyGraphics);
-    //
-    //     // kick off the animation loop (defined below)
-    //     animate();
-    // });
-    // var deltaTime;
-    // var lastTime;
-    //
-    // function animate(timestamp) {
-    //     if (!lastTime) {
-    //         lastTime = timestamp;
-    //     }
-    //     deltaTime = (timestamp - lastTime) / 1000;
-    //     lastTime = timestamp;
-    //     console.log(1/deltaTime);
-    //     //  if (!start) start = timestamp;
-    //     //  var progress = timestamp - start;
-    //     renderer.render(stage);
-    //     if (deltaTime) {
-    //         player.x += player.vx * deltaTime;
-    //         player.y += player.vy * deltaTime;
-    //     }
-    //     requestAnimationFrame(animate);
-    // }
-    //
-    // function keyboard(keyCode) {
-    //     var key = {};
-    //     key.code = keyCode;
-    //     key.isDown = false;
-    //     key.isUp = true;
-    //     key.press = undefined;
-    //     key.release = undefined;
-    //     //The `downHandler`
-    //     key.downHandler = function(event) {
-    //         if (event.keyCode === key.code) {
-    //             if (key.isUp && key.press) key.press();
-    //             key.isDown = true;
-    //             key.isUp = false;
-    //         }
-    //         event.preventDefault();
-    //     };
-    //
-    //     //The `upHandler`
-    //     key.upHandler = function(event) {
-    //         if (event.keyCode === key.code) {
-    //             if (key.isDown && key.release) key.release();
-    //             key.isDown = false;
-    //             key.isUp = true;
-    //         }
-    //         event.preventDefault();
-    //     };
-    //
-    //     //Attach event listeners
-    //     window.addEventListener(
-    //         "keydown", key.downHandler.bind(key), false
-    //     );
-    //     window.addEventListener(
-    //         "keyup", key.upHandler.bind(key), false
-    //     );
-    //     return key;
-    // }
-    //
-    // //Keys
-    // wKeyListener.press = function () {
-    //   player.vy = -(speed);
-    // }
-    // wKeyListener.release = function () {
-    //   if (!sKeyListener.isDown) {
-    //     player.vy = 0;
-    //   }else {
-    //     player.vy = speed;
-    //   }
-    // }
-    // aKeyListener.press = function () {
-    //   player.vx = -(speed);
-    // }
-    // aKeyListener.release = function () {
-    //   if (!dKeyListener.isDown) {
-    //       player.vx = 0;
-    //   } else {
-    //       player.vx = speed;
-    //   }
-    //
-    // }
-    // sKeyListener.press = function () {
-    //   player.vy = (speed);
-    // }
-    // sKeyListener.release = function () {
-    //   if (!wKeyListener.isDown) {
-    //     player.vy = 0;
-    //   }else {
-    //     player.vy = -speed;
-    //   }
-    // }
-    // dKeyListener.press = function () {
-    //   player.vx = (speed);
-    // }
-    // dKeyListener.release = function () {
-    //   if (!aKeyListener.isDown) {
-    //       player.vx = 0;
-    //   } else {
-    //       player.vx = -speed;
-    //   }
-    // }
-    var engine = Matter.Engine.create();
-
-    var render = Matter.Render.create({
-        element: document.getElementById("gameWindow"),
-        engine: engine,
-        options: {
-            width: 1080,
-            height: 700
-        }
-    });
-    var wallTop = Matter.Bodies.rectangle(render.options.width / 2, 0, render.options.width + 2, 20, {
-        isStatic: true
-    });
-    var wallBot = Matter.Bodies.rectangle(render.options.width / 2, render.options.height, render.options.width + 2, 20, {
-        isStatic: true
-    });
-    var wallLeft = Matter.Bodies.rectangle(0, render.options.height / 2, 20, render.options.height + 2, {
-        isStatic: true
-    });
-    var wallRight = Matter.Bodies.rectangle(render.options.width, render.options.height / 2, 20, render.options.height + 2, {
-        isStatic: true
-    });
-
-    engine.world.gravity.scale = 0;
-    var mouse1 = Matter.Mouse.create(render.canvas);
-    var mouseCons = Matter.MouseConstraint.create(engine, {
-        mouse: mouse1
-    });
-    var box = Matter.Bodies.rectangle(100, 200, 200, 150, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        strokeStyle: '#ffffff',
-        sprite: {
-          texture: 'w.png'
-        }
-    });
-    var box2 = Matter.Bodies.rectangle(500, 400, 500, 150, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render:{
-          strokeStyle: '#ffffff',
-          sprite: {
-            texture: 'w.png'
-          }
-        }
-
-    });
-    box.torque = 10;
-    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2]);
-
-    Math.random
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-
-    var AllBodies = [box, box2];
-    render.options.background = 'w.png';
-    render.options.wireframes = false;
-    render.options.showAngleIndicator = false;
-
-    var runner = Matter.Runner.create();
-    Matter.Runner.run(runner, engine);
-    Matter.Events.on(runner, "tick", function(eventCall) {})
-
-    Matter.Events.on(mouseCons, "mousedown", function(eventCall) {
-            if (eventCall.mouse.button == 0) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), -1));
-                    console.log(AllBodies[i].sprite);
-                }
-
-            } else if (eventCall.mouse.button == 2) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), 1));
-                }
+$(".secondBody").css("top", $(".mainBody").offset().top);
+$(".secondBody").css("left", $(".mainBody").offset().left);
+$(".secondBody").css("width", $(".mainBody").width());
+$(".secondBody").css("height", $(".mainBody").height());
+var randomRows = GetRandomInt(3,6);
+var randomCol = GetRandomInt(3,6);
+    for (var y = 0; y < randomRows; y++) {
+        var randomHeight = GetRandomArbitrary(1, 4);
+        var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+        var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+        $(".mainBody").append(follow);
+        $(".secondBody").append(follow2);
+        for (var x = 0; x < randomCol; x++) {
+            if (true) {
+                var randomWidth = GetRandomArbitrary(1, 4);
+                var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='flex: " + randomWidth + " 0 auto'></div>";
+                $("#vertBox-" + y).append(xfollow);
+                $("#vertBox2-" + y).append(xfollow);
             }
-        })
-        // run the engine
-        //  Matter.Engine.run(engine);
+            // } else {
+            //     var value = (Math.random() * ((100 / divide) + 20) + ((100 / divide) - 20))
+            //     total += value;
+            //     var follow = "";
+            //     if (total > 100) {
+            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 1 1 " + (100 - (total - value)) + "%'></div>";
+            //         total = 0;
+            //         //
+            //         $(".mainBody").append(follow);
+            //         break;
+            //     } else {
+            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 0 0 " + value + "%'></div>";
+            //         $(".mainBody").append(follow);
+            //     }
 
-    // run the renderer
-    Matter.Render.run(render);
+
+            //flo = (Math.random() >= 0.5);
+        }
+    }
+
+    $(".innerBoxesRow").click(function() {
+        $(this).addClass("magictime puffOut");
+        var thisIs = this;
+        setTimeout(function() {
+            $(thisIs).addClass('loaded');
+            $(thisIs).css("pointerEvents", "none");
+          //  $(thisIs).css("position", "fixed");
+        }, 1000);
+    });
 });
+var clicked = false;
+
+function GetRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+function GetRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function SnellClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#snellGlow").css("left", e.pageX);
+        $("#snellGlow").css("top", e.pageY);
+        $("#snellGlow").css("box-shadow", "0 0 10px 0 rgba(0, 0, 0, 0.9)");
+        $("#snellGlow").animate({
+            boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#snellGlow").css("z-index", "10000");
+        //  $(".Snell").css("z-index", "-1");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Snell");
+        }, 2000);
+    }
+}
+
+function HillaryClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#hillaryGlow").css("left", e.pageX);
+        $("#hillaryGlow").css("top", e.pageY);
+        $("#hillaryGlow").css("box-shadow", "0 0 10px 0 rgba(250, 255, 0, 0.9)");
+        $("#hillaryGlow").animate({
+            boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear",
+            // done: GoToPage("Hillary")
+        });
+        $("#hillaryGlow").css("z-index", "10000");
+        //  $(".Hillary").css("z-index", "-1");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Hillary");
+        }, 2000);
+    }
+}
+
+function RutherfordClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#rutherfordGlow").css("left", e.pageX);
+        $("#rutherfordGlow").css("top", e.pageY);
+        $("#rutherfordGlow").css("box-shadow", "0 0 10px 0 rgba(255, 0, 0, 0.9)");
+        $("#rutherfordGlow").animate({
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#rutherfordGlow").css("z-index", "1000");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Rutherford");
+        }, 2000);
+    }
+}
+
+function TepueaClick(e) {
+    if (clicked == false) {
+        clicked = true;
+        $("#tepueaGlow").css("left", e.pageX);
+        $("#tepueaGlow").css("top", e.pageY);
+        $("#tepueaGlow").css("box-shadow", "0 0 10px 0 rgba(0, 198, 26, 0.9)");
+        $("#tepueaGlow").animate({
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+        }, {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#tepueaGlow").css("z-index", "1000");
+        setTimeout(function delayed() {
+            GoToPageFromSheppard("Tepuea");
+        }, 2000);
+    }
+}
+
+function GoToPageFromSheppard(page) {
+    window.location.href = "../" + page + "/index.html";
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function FadeOut() {
-    $("#loaderWrapper").addClass("loaded");
+    $("#loaderWrapper").addClass("magictime puffOut");
+    //ResizeCovers();
+    setTimeout(function() {
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
 }
