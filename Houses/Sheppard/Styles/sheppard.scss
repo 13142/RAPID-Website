@@ -138,11 +138,11 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
 .vertText {
     text-align: center;
-    transform: rotate(90deg) translate(-45px, -15px);
+    transform: rotate(90deg) translate(calc(32px - 3.5vw), calc(3px - 1.2vw));
     transform-origin: left bottom 0;
     float: left;
     font-family: Mohave;
-    font-size: 40pt;
+    font-size: calc(10pt + 2vw);
     position: fixed;
     white-space: nowrap;
 }
@@ -154,7 +154,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     transform-origin: left bottom 0;
     transform: rotate(90deg) translate(-41px, -12px);
     line-height: 0.9;
-    font-size: 30pt;
+    font-size: calc(10pt + 2vw);
     color: $InnerColor;
     animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
 
@@ -171,7 +171,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 .SnellTxt {
     $InnerColor: #cccccc;
     $OuterColor: #000;
-    transform: rotate(90deg) translate(-25px, -18px);
+    transform: rotate(90deg) translate(calc(44px - 3.2vw), calc(1px - 1.1vw));
     animation: LesserOnesSnellNeonText 1.5s ease-in-out infinite alternate;
 
     &:hover {
@@ -202,7 +202,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 .TepueaTxt {
     $InnerColor: #ccffcd;
     $OuterColor: rgb(21, 198, 12);
-    transform: rotate(90deg) translate(-47px, -19px);
+    transform: rotate(90deg) translate(calc(40px - 4.2vw), calc(5px - 1.3vw));
     animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
 
     &:hover {
