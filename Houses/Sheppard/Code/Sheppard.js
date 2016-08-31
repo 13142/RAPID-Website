@@ -1,54 +1,111 @@
 //document.getElementById("sheppardPortrait").playbackRate = 1.6;
 $(document).ready(function() {
-$(".secondBody").css("top", $(".mainBody").offset().top);
-$(".secondBody").css("left", $(".mainBody").offset().left);
-$(".secondBody").css("width", $(".mainBody").width());
-$(".secondBody").css("height", $(".mainBody").height());
-var randomRows = GetRandomInt(3,6);
-var randomCol = GetRandomInt(3,6);
-    for (var y = 0; y < randomRows; y++) {
-        var randomHeight = GetRandomArbitrary(1, 4);
-        var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
-        var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
-        $(".mainBody").append(follow);
-        $(".secondBody").append(follow2);
-        for (var x = 0; x < randomCol; x++) {
-            if (true) {
-                var randomWidth = GetRandomArbitrary(1, 4);
-                var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='flex: " + randomWidth + " 0 auto'></div>";
-                $("#vertBox-" + y).append(xfollow);
-                $("#vertBox2-" + y).append(xfollow);
+    Resize();
+    var allWords;
+
+    $.ajax({
+        url: "Media/SheppardWords.txt",
+        dataType: "text",
+        success: function(data) {
+            allWords = (data).split("\n");
+            LoadBoxes();
+            $(".innerBoxesRow").click(function() {
+                $(this).addClass("magictime puffOut");
+                var thisIs = this;
+                setTimeout(function() {
+                    $(thisIs).addClass('loaded');
+                    $(thisIs).css("pointerEvents", "none");
+                    //  $(thisIs).css("position", "fixed");
+                }, 1000);
+            });
+        }
+    });
+
+    function LoadBoxes() {
+        var randomRows = GetRandomInt(4, 6);
+        var randomCol = GetRandomInt(4, 6);
+        var widthy = RandomSplits(100, randomRows);
+        console.log(widthy);
+        for (var y = 0; y < randomRows; y++) {
+            var randomHeight = GetRandomArbitrary(1, 4);
+            //var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+            //var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+            var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: 0 0 auto; width: " + $(".mainBody").width() * (widthy[y] / 100) + "px'></div>";
+            var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: 0 0 auto; width: " + $(".mainBody").width() * (widthy[y] / 100) + "px'></div>";
+            $(".mainBody").append(follow);
+            $(".secondBody").append(follow2);
+            for (var x = 0; x < randomCol; x++) {
+                if (true) {
+                    var randomWidth = GetRandomArbitrary(1, 4);
+                    var randomIndex = GetRandomInt(0, allWords.length)
+                    var innerText = allWords[randomIndex];
+                    //allWords.splice(randomIndex, 1);
+                    var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='flex: " + randomWidth + " 0 0'></div>";
+                    var xfollow2 = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style=' flex: " + randomWidth + " 0 0'>" + innerText + "</div>";
+                    $("#vertBox-" + y).append(xfollow);
+                    $("#vertBox2-" + y).append(xfollow2);
+                }
             }
-            // } else {
-            //     var value = (Math.random() * ((100 / divide) + 20) + ((100 / divide) - 20))
-            //     total += value;
-            //     var follow = "";
-            //     if (total > 100) {
-            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 1 1 " + (100 - (total - value)) + "%'></div>";
-            //         total = 0;
-            //         //
-            //         $(".mainBody").append(follow);
-            //         break;
-            //     } else {
-            //         follow = "<div id=\'box-" + x + "-" + y + "\' class='innerBoxes' style='flex: 0 0 " + value + "%'></div>";
-            //         $(".mainBody").append(follow);
-            //     }
-
-
-            //flo = (Math.random() >= 0.5);
         }
     }
 
-    $(".innerBoxesRow").click(function() {
-        $(this).addClass("magictime puffOut");
-        var thisIs = this;
-        setTimeout(function() {
-            $(thisIs).addClass('loaded');
-            $(thisIs).css("pointerEvents", "none");
-          //  $(thisIs).css("position", "fixed");
-        }, 1000);
+    var resizeTimer;
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(Resize, 100);
     });
 });
+
+function RandomSplits(total, amountOfValues) {
+    while (true) {
+        var a = [];
+        var i = 0;
+        var trueTotal = total;
+        while (trueTotal > 0) {
+            if (i == amountOfValues - 1) {
+                a.push(trueTotal);
+                a = shuffle(a);
+                return a;
+            }
+            var s = Math.random() * trueTotal / 2.5 + 10;
+            // while (s < 10 || s > 50) {
+            //   s = Math.random() * total;
+            // }
+            a.push(s);
+            trueTotal -= s;
+            i++;
+        }
+    }
+
+}
+
+function shuffle(array) {
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+function Resize() {
+    $(".secondBody").css("top", $(".mainBody").offset().top);
+    $(".secondBody").css("left", $(".mainBody").offset().left);
+    $(".secondBody").css("width", $(".mainBody").width());
+    $(".secondBody").css("height", $(".mainBody").height());
+}
+
 var clicked = false;
 
 function GetRandomInt(min, max) {
@@ -56,8 +113,9 @@ function GetRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
 function GetRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
+    return Math.random() * (max - min) + min;
 }
 
 function SnellClick(e) {

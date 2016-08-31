@@ -152,9 +152,9 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     $OuterColor: rgb(255, 0, 0);
     text-align: center;
     transform-origin: left bottom 0;
-    transform: rotate(90deg) translate(-41px, -12px);
+    transform: rotate(90deg) translate(calc(36px - 3.6vw), calc(5px - 1.06vw));
     line-height: 0.9;
-    font-size: calc(10pt + 2vw);
+    font-size: calc(10pt + 1.3vw);
     color: $InnerColor;
     animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
 
@@ -228,6 +228,8 @@ $DarkSide: rgba(255, 255, 255, 0.7);
   padding: 10px;
   display: flex;
   flex-flow: row;
+  z-index: 0;
+  overflow:hidden;
   //box-shadow: inset 0 0 5px 2px #FFF, 0 0 5px 2px #FFF;
   .innerBoxesCol {
       background-color: none;
@@ -238,15 +240,10 @@ $DarkSide: rgba(255, 255, 255, 0.7);
   }
 
   .innerBoxesRow {
-      // background-color: rgb(215, 235, 255);
-      //
-      // &:hover {
-      //     background-color: rgb(149, 189, 230);
-      //
-      //     &:active {
-      //         background-color: rgb(24, 107, 193);
-      //     }
-      // }
+    pointer-events: none;
+    flex-shrink: none;
+    min-width: 0px;
+    word-wrap: break-word;
   }
 }
 .mainBody {
@@ -284,7 +281,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
     .innerBoxesRow {
         background-color: rgb(215, 235, 255);
-
+        z-index: 5;
         &:hover {
             background-color: rgb(149, 189, 230);
 
