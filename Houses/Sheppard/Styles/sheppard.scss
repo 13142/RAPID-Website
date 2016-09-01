@@ -2,6 +2,11 @@
     font-family: Mohave;
     src: url("../../../Fonts/Mohave.otf");
 }
+@font-face {
+    font-family: Montserrat;
+    font-weight: normal;
+    src: url("../../../Fonts/Montserrat-Regular.otf");
+}
 $backgroundColor: #000023;
 
 body,
@@ -230,6 +235,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
   flex-flow: row;
   z-index: 0;
   overflow:hidden;
+
   //box-shadow: inset 0 0 5px 2px #FFF, 0 0 5px 2px #FFF;
   .innerBoxesCol {
       background-color: none;
@@ -244,6 +250,9 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     flex-shrink: none;
     min-width: 0px;
     word-wrap: break-word;
+    color: rgb(240, 240, 240);
+    font-family: Montserrat;
+  //font-size: calc((1vw * 1vh)/1000);
   }
 }
 .mainBody {
