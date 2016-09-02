@@ -12,6 +12,9 @@ $(document).ready(function() {
             LoadBoxes();
 
             Resize();
+			setTimeout(Resize, 150);
+			setTimeout(Resize, 300);
+			
             $(".innerBoxesRow").click(function() {
                 $(this).addClass("magictime puffOut");
                 var thisIs = this;
