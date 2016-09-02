@@ -3,9 +3,10 @@
     src: url("../../../Fonts/Mohave.otf");
 }
 @font-face {
-    font-family: Montserrat;
+    font-family: Summit;
     font-weight: normal;
-    src: url("../../../Fonts/Montserrat-Regular.otf");
+    font-style: 0;
+    src: url("../../../Fonts/SummitRegular-Solid.otf");
 }
 $backgroundColor: #000023;
 
@@ -17,6 +18,7 @@ html {
     margin: 0;
     background-color: $backgroundColor;
     overflow: hidden;
+
 }
 
 #PageWrapper {
@@ -251,7 +253,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     min-width: 0px;
     word-wrap: break-word;
     color: rgb(240, 240, 240);
-    font-family: Montserrat;
+    font-family: Summit;
   //font-size: calc((1vw * 1vh)/1000);
   }
 }
