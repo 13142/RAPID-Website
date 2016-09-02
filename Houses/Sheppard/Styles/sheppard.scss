@@ -2,6 +2,11 @@
     font-family: Mohave;
     src: url("../../../Fonts/Mohave.otf");
 }
+@font-face {
+    font-family: Montserrat;
+    font-weight: normal;
+    src: url("../../../Fonts/Montserrat-Regular.otf");
+}
 $backgroundColor: #000023;
 
 body,
@@ -138,11 +143,11 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
 .vertText {
     text-align: center;
-    transform: rotate(90deg) translate(-45px, -15px);
+    transform: rotate(90deg) translate(calc(32px - 3.5vw), calc(3px - 1.2vw));
     transform-origin: left bottom 0;
     float: left;
     font-family: Mohave;
-    font-size: 40pt;
+    font-size: calc(10pt + 2vw);
     position: fixed;
     white-space: nowrap;
 }
@@ -152,9 +157,9 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     $OuterColor: rgb(255, 0, 0);
     text-align: center;
     transform-origin: left bottom 0;
-    transform: rotate(90deg) translate(-41px, -12px);
+    transform: rotate(90deg) translate(calc(36px - 3.6vw), calc(5px - 1.06vw));
     line-height: 0.9;
-    font-size: 30pt;
+    font-size: calc(10pt + 1.3vw);
     color: $InnerColor;
     animation: LesserOnesRutherfordNeonText 1.5s ease-in-out infinite alternate;
 
@@ -171,7 +176,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 .SnellTxt {
     $InnerColor: #cccccc;
     $OuterColor: #000;
-    transform: rotate(90deg) translate(-25px, -18px);
+    transform: rotate(90deg) translate(calc(44px - 3.2vw), calc(1px - 1.1vw));
     animation: LesserOnesSnellNeonText 1.5s ease-in-out infinite alternate;
 
     &:hover {
@@ -202,7 +207,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 .TepueaTxt {
     $InnerColor: #ccffcd;
     $OuterColor: rgb(21, 198, 12);
-    transform: rotate(90deg) translate(-47px, -19px);
+    transform: rotate(90deg) translate(calc(40px - 4.2vw), calc(5px - 1.3vw));
     animation: LesserOnesTepueaNeonText 1.5s ease-in-out infinite alternate;
 
     &:hover {
@@ -228,6 +233,9 @@ $DarkSide: rgba(255, 255, 255, 0.7);
   padding: 10px;
   display: flex;
   flex-flow: row;
+  z-index: 0;
+  overflow:hidden;
+
   //box-shadow: inset 0 0 5px 2px #FFF, 0 0 5px 2px #FFF;
   .innerBoxesCol {
       background-color: none;
@@ -238,15 +246,13 @@ $DarkSide: rgba(255, 255, 255, 0.7);
   }
 
   .innerBoxesRow {
-      // background-color: rgb(215, 235, 255);
-      //
-      // &:hover {
-      //     background-color: rgb(149, 189, 230);
-      //
-      //     &:active {
-      //         background-color: rgb(24, 107, 193);
-      //     }
-      // }
+    pointer-events: none;
+    flex-shrink: none;
+    min-width: 0px;
+    word-wrap: break-word;
+    color: rgb(240, 240, 240);
+    font-family: Montserrat;
+  //font-size: calc((1vw * 1vh)/1000);
   }
 }
 .mainBody {
@@ -284,7 +290,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
     .innerBoxesRow {
         background-color: rgb(215, 235, 255);
-
+        z-index: 5;
         &:hover {
             background-color: rgb(149, 189, 230);
 
