@@ -61,9 +61,9 @@ $(document).ready(function() {
 				}else if (alignValue > 0.66){
 					alignment = "right";
 				}else{
-				alignment = "center";
+					alignment = "center";
 				}
-                var xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment +"font-size: 10pt'><span>" + innerText + "</span></div>";
+                var xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment +"; font-size: 10pt'><span>" + innerText + "</span></div>";
 
                 $("#vertBox-" + y).append(xfollow);
                 $("#vertBox2-" + y).append(xfollow2);
