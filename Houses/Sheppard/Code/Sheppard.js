@@ -54,8 +54,16 @@ $(document).ready(function() {
 
                 //var fontSize = ((hInPixels * wInPixels) / 2000) - innerText.length / 2;  //randomWidth;
                 //console.log(fontSize);
-
-                var xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; font-size: 10pt'><span>" + innerText + "</span></div>";
+				var alignment;
+				var alignValue = Math.random()
+				if (alignValue < 0.33){
+					alignment = left;
+				}else if (alignValue > 0.66){
+					alignment = right;
+				}else{
+				alignment = center;
+				}
+                var xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment +"font-size: 10pt'><span>" + innerText + "</span></div>";
 
                 $("#vertBox-" + y).append(xfollow);
                 $("#vertBox2-" + y).append(xfollow2);
