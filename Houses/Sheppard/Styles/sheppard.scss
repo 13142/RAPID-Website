@@ -3,10 +3,10 @@
     src: url("../../../Fonts/Mohave.otf");
 }
 @font-face {
-    font-family: Summit;
+    font-family: Building;
     font-weight: normal;
     font-style: 0;
-    src: url("../../../Fonts/SummitRegular-Solid.otf");
+    src: url("../../../Fonts/Building_Typeface.ttf");
 }
 $backgroundColor: #000023;
 
@@ -253,7 +253,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     min-width: 0px;
     word-wrap: break-word;
     color: rgb(240, 240, 240);
-    font-family: Summit;
+    font-family: Building;
   //font-size: calc((1vw * 1vh)/1000);
   }
 }
