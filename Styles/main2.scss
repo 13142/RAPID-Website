@@ -1,5 +1,5 @@
 @font-face {
-    font-family: Lavanderia;
+    font-family: Mohave;
     src: url("../Fonts/Mohave.otf");
 }
 body {
@@ -68,8 +68,8 @@ body {
     vertical-align: middle;
     //display: table-cell;
     //box-shadow: inset -3px -3px 1px 1px #4a5262, inset 3px 3px 1px 1px #dee8fb;
-    font-family: Lavanderia;
-    font-size: 62pt;
+    font-family: Mohave;
+    font-size: calc(4.1vw + 4pt);
     color: rgb(255, 255, 255);
     //text-shadow: 2px 2px rgb(45, 45, 45), -2px -2px rgb(45, 45, 45), -2px 2px rgb(45, 45, 45), 2px -2px rgb(45, 45, 45);
 }
@@ -154,7 +154,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
         }
     }
     @at-root {
-        @include DoGlowingText($inClass, $inTeUp, $inCoDown, rgba(255, 255, 255, 0.5));
+       @include DoGlowingText($inClass, $inTeUp, $inCoDown, rgba(255, 255, 255, 0.5));
         @include DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $inClass);
     }
 }
@@ -205,7 +205,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextUp: rgb(252, 213, 213);
     $TextPressed: rgb(209, 158, 158);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
-    font-size: 55pt;
+    font-size: calc(4.1vw + -1pt);
 }
 .TePuea {
     $Class: "TePuea";

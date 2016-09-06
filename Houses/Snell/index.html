@@ -6,26 +6,33 @@
     <title>RAPID</title>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/snell.min.css">
-    <link rel="stylesheet" href="../../Styles/jquery-ui.min.css">
+    <!-- <link rel="stylesheet" href="../../Styles/jquery-ui.min.css"> -->
     <link rel="stylesheet" href="../../Styles/magic.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
     <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
-        <div id="loader">Snell</div>
+        <div id="loader" style="display: none">Snell</div>
 
     </div>
     </div>
     <div id="PageWrapper">
-      <div class="TotalContainer"></div>
+        <div class="TotalContainer"></div>
         <div class="top-container unselectable">
             <div class="SheppardTitle lesserContainer" onmouseup="SheppardClick(event)">
-				<div id="sheppardGlow" style="position: absolute"></div>
+                <div id="sheppardGlow" style="position: absolute"></div>
                 <div class="vertText SheppardTxt">Sheppard</div>
             </div>
-            <div class="SnellTitle">
-                Snell
+            <div class="MainOverall">
+              <!-- MAKE SURE THIS DIV CONTAINS THE HOUSE NAME -->
+                <div class="SnellTitle" id="HouseName">
+                    Snell
+                </div>
+                <div class="subtitle">
+                    Show Respect For Others
+                </div>
             </div>
+
 
             <div class="HillaryTitle lesserContainer" onmouseup="HillaryClick(event)">
                 <div id="hillaryGlow" style="position: absolute"></div>
@@ -41,22 +48,9 @@
                 <div class="vertText TepueaTxt">Te Puea</div>
             </div>
         </div>
+        <div class="secondBody">
+        </div>
         <div class="mainBody">
-            <!-- This is the body -->
-            <div class="leftCol">
-                <div id="leftCover"></div>
-                <div class="bottomBox" id="leftCol">Bot</div>
-            </div>
-            <div class="center" id="gameWindow">
-                <!-- <canvas id="gameWindow" width="1080" height="700"></canvas> -->
-            </div>
-            <div class="rightCol">
-                <div class="topBox">
-                    <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
-                </div>
-                <div id="rightCover"></div>
-                <div class="bottomBox" id="rightCol">Bot</div>
-            </div>
         </div>
         <div class="footer">
             <span class="left">Created by Rex
@@ -71,6 +65,7 @@
     <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="../../Code/jquery-ui.js"></script>
     <script type="text/javascript" src="../../Code/jquery.animate-shadow.js"></script>
+        <script type="text/javascript" src="../../Code/jquery.textfill.min.js"></script>
     <!-- <script type="text/javascript" src="../../Code/pixi.js"></script> -->
     <script type="text/javascript" src="../../Code/matter.js"></script>
 

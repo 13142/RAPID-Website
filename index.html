@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>RAPID</title>
+    <script>
+    var on = /*@cc_on!@*/false || !!document.documentMode;
+    //var ed = !isIE && !!window.StyleMedia;
+    console.log("Fefef");
+    if (on) {
+      window.location.replace("IEResponse.html");
+    }
+    </script>
     <link rel="stylesheet" href="Styles/main2.min.css">
-	<link rel="stylesheet" href="Styles/Uni.min.css">
+    <link rel="stylesheet" href="Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/jquery-ui.min.css">
 </head>
 
@@ -22,25 +29,25 @@
                 </div>
             </div>
             <div class="IndContainer">
-              <div class="overLap" id="snellGlow"></div>
+                <div class="overLap" id="snellGlow"></div>
                 <div class="Snell Houses" onmouseup="SnellClick(event)">
                     Snell
                 </div>
             </div>
             <div class="IndContainer">
-              <div class="overLap" id="hillaryGlow"></div>
+                <div class="overLap" id="hillaryGlow"></div>
                 <div class="Hillary Houses" onmouseup="HillaryClick(event)">
                     Hillary
                 </div>
             </div>
             <div class="IndContainer">
-              <div class="overLap" id="rutherfordGlow"></div>
+                <div class="overLap" id="rutherfordGlow"></div>
                 <div class="Rutherford Houses" onmouseup="RutherfordClick(event)">
                     Rutherford
                 </div>
             </div>
             <div class="IndContainer">
-              <div class="overLap" id="tepueaGlow"></div>
+                <div class="overLap" id="tepueaGlow"></div>
                 <div class="TePuea Houses" onmouseup="TepueaClick(event)">
                     Te Puea
                 </div>

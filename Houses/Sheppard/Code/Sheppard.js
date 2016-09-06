@@ -4,7 +4,8 @@ $(document).ready(function()
     $("#loader").hide().delay(400).fadeIn(1500);
 
     var allWords;
-
+    var House = $("#HouseName").text().trim();
+    console.log(House);
     $.ajax(
     {
         url: "Media/SheppardWords.txt",
@@ -16,8 +17,6 @@ $(document).ready(function()
             setTimeout(LoadBoxes, 0);
             //LoadBoxes();
             setTimeout(Resize, 300);
-
-
         }
     });
 
@@ -73,12 +72,12 @@ $(document).ready(function()
 
                 if (AroundPointRatio(wInPixels, hInPixels, 240, 180, 0.2) && !done[0])
                 {
-                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><video id='sheppardPortrait' width='" + wInPixels + "' height='" + hInPixels + "' autoplay loop muted><source src='Media/sheppard.mp4' type='video/mp4'></video></div>";
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><video id='sheppardPortrait' width='" + wInPixels + "' height='" + hInPixels + "' autoplay loop muted><source src='Media/" + House + ".mp4' type='video/mp4'></video></div>";
                     done[0] = true;
                 }
                 else if (AroundPointRatio(wInPixels, hInPixels, 937, 379, 0.2) && !done[1])
                 {
-                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'> <img src='Media/RespectWords.png' alt='Respect' height=" + hInPixels + " width=" + wInPixels + "> </div>";
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'> <img src='Media/" + House + "Words.png' alt='Respect' height=" + hInPixels + " width=" + wInPixels + "> </div>";
                     done[1] = true;
                 }
                 else

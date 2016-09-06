@@ -4,6 +4,14 @@
 <head>
     <meta charset="utf-8">
     <title>RAPID</title>
+    <script>
+    var on = /*@cc_on!@*/false || !!document.documentMode;
+    //var ed = !isIE && !!window.StyleMedia;
+    console.log("Fefef");
+    if (on) {
+      window.location.replace("../../IEResponse.html");
+    }
+    </script>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/sheppard.min.css">
     <!-- <link rel="stylesheet" href="../../Styles/jquery-ui.min.css"> -->
@@ -18,9 +26,15 @@
     </div>
     <div id="PageWrapper">
         <div class="TotalContainer" id="tester"></div>
-        <div class="top-container unselectable" >
-            <div class="SheppardTitle">
-                Sheppard
+        <div class="top-container unselectable">
+            <div class="MainOverall">
+              <!-- MAKE SURE THIS DIV CONTAINS THE HOUSE NAME -->
+                <div class="SheppardTitle" id="HouseName">
+                    Sheppard
+                </div>
+                <div class="subtitle">
+                    Show Respect For Others
+                </div>
             </div>
             <div class="SnellTitle lesserContainer" onmouseup="SnellClick(event)">
                 <div id="snellGlow" style="position: absolute"></div>
@@ -41,34 +55,14 @@
             </div>
         </div>
         <div class="secondBody">
-
         </div>
         <div class="mainBody">
-            <!-- This is the body -->
-            <!-- <div class="leftCol" >
-                <div id="leftCover"></div>
-                <div class="bottomBox" id="leftCol">Bot</div>
-            </div>
-
-            <div class="center" id="gameWindow">
-            </div>
-            <div class="rightCol">
-                <div class="topBox">
-                    <video id="sheppardPortrait" src="./Media/SheppardBackLow.webm" autoplay muted loop="true"></video>
-                </div>
-                <div id="rightCover"></div>
-                <div class="bottomBox" id="rightCol">Bot</div>
-            </div> -->
-
         </div>
         <div class="footer">
-          <span class="left">Created by Rex
+            <span class="left">Created by Rex
           <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
-          <span class="right">Created for Hillcrest High</span>
+            <span class="right">Created for Hillcrest High</span>
         </div>
-    </div>
-    <div class="clear">
-        This is the body
     </div>
     <!-- Jquery and dependencies-->
     <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>
