@@ -1,291 +1,355 @@
-document.getElementById("sheppardPortrait").playbackRate = 1.6;
-$(document).ready(function() {
-    var canvas = document.getElementById("gameWindow");
-    var World = Matter.World,
-        Bodies = Matter.Bodies,
-        Composites = Matter.Composites,
-        Common = Matter.Common;
+$(document).ready(function()
+{
 
+    $("#loader").hide().delay(400).fadeIn(1500);
 
-    var engine = Matter.Engine.create();
-
-    var render = Matter.Render.create({
-        element: document.getElementById("gameWindow"),
-        engine: engine,
-        options: {
-            width: 1080,
-            height: 700
+    var allWords;
+    var House = $("#HouseName").text();
+    $.ajax(
+    {
+        url: "Media/"+ House + "Words.txt",
+        dataType: "text",
+        success: function(data)
+        {
+            var NewData = data.toUpperCase();
+            allWords = (NewData).split("\n");
+            setTimeout(LoadBoxes, 0);
+            //LoadBoxes();
+            setTimeout(Resize, 300);
         }
     });
-    UpdatePhysicsWindow();
-    var wallTop = Matter.Bodies.rectangle(render.canvas.width / 2, 0, render.canvas.width + 2, 20, {
-        isStatic: true
-    });
-    var wallBot = Matter.Bodies.rectangle(render.canvas.width / 2, render.canvas.height, 5000, 20, {
-        isStatic: true 	
-    });
-    var wallLeft = Matter.Bodies.rectangle(0, render.canvas.height / 2, 20, 5000, {
-        isStatic: true
-    });
-    var wallRight = Matter.Bodies.rectangle(render.canvas.width, render.canvas.height / 2, 20, 5000, {
-        isStatic: true
-    });
 
-    engine.world.gravity.scale = 0;
-    var mouse1 = Matter.Mouse.create(render.canvas);
-    var mouseCons = Matter.MouseConstraint.create(engine, {
-        mouse: mouse1
-    });
-    var box = Matter.Bodies.rectangle(100, 200, 300, 50, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/MannerWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
-            }
-        }
-    });
-    var box3 = Matter.Bodies.rectangle(700, 600, 300, 50, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/KindnessWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
-            }
-        }
-    });
-    var box4 = Matter.Bodies.rectangle(900, 500, 300, 50, {
-        restitution: 0.4,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/MindfulWords.png',
-                xScale: 0.3,
-                yScale: 0.3,
-            }
-        }
-    });
-    var box2 = Matter.Bodies.rectangle(450, 300, 500, 150, {
-        restitution: 0.8,
-        friction: 0,
-        frictionAir: 0.005,
-        render: {
-            strokeStyle: '#ffffff',
-            sprite: {
-                texture: 'Media/RespectWords.png',
-                xScale: 0.6,
-                yScale: 0.6,
-            }
-        }
+    function LoadBoxes()
+    {
+        var randomRows = GetRandomInt(4, 6);
+        var randomCol = GetRandomInt(4, 6);
+        var widthy = RandomSplits(100, randomRows, 1, 6);
+        var done = [
+            false,
+            false
+        ];
+        for (var y = 0; y < randomRows; y++)
+        {
+            var heightx = RandomSplits(100, randomCol, 1, 6);
+            console.log(heightx);
+            var randomHeight = GetRandomArbitrary(1, 4);
+            //var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+            //var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
+            var wInPixels = $(".mainBody").width() * (widthy[y] / 100)
 
-    });
-    box.torque = 10;
-    Matter.World.add(engine.world, [wallTop, wallBot, wallLeft, wallRight, box, box2, box3, box4]);
+            var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: 0 0 auto; width: " + wInPixels + "px'></div>";
+            var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: 0 0 auto; width: " + wInPixels + "px'></div>";
+            $(".mainBody").append(follow);
+            $(".secondBody").append(follow2);
+            for (var x = 0; x < randomCol; x++)
+            {
+                var hInPixels = $(".mainBody").height() * (heightx[x] / 100);
+                //var randomWidth = GetRandomArbitrary(1, 4);
+                var randomIndex = GetRandomInt(0, allWords.length);
+                var innerText = allWords[randomIndex];
+                allWords.splice(randomIndex, 1);
+                var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='height: " + hInPixels + "px;'></div>";
 
-
-    Matter.Body.applyForce(box, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box3, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box2, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-    Matter.Body.applyForce(box4, box.position, Matter.Vector.create(Math.random() / 2, Math.random() / 2));
-
-    var AllBodies = [box, box2, box3, box4];
-    render.options.background = "#000000";
-    render.options.wireframes = false;
-    render.options.showAngleIndicator = false;
-
-    var runner = Matter.Runner.create();
-    Matter.Runner.run(runner, engine);
-    Matter.Events.on(runner, "tick", function(eventCall) {})
-
-    Matter.Events.on(mouseCons, "mousedown", function(eventCall) {
-            if (eventCall.mouse.button == 0) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), -1));
-                    console.log(AllBodies[i].sprite);
+                //var fontSize = ((hInPixels * wInPixels) / 2000) - innerText.length / 2;  //randomWidth;
+                //console.log(fontSize);
+                var alignment;
+                var alignValue = Math.random()
+                if (alignValue < 0.33)
+                {
+                    alignment = "left";
+                }
+                else if (alignValue > 0.66)
+                {
+                    alignment = "right";
+                }
+                else
+                {
+                    alignment = "center";
                 }
 
-            } else if (eventCall.mouse.button == 2) {
-                for (var i = 0; i < AllBodies.length; i++) {
-                    Matter.Body.applyForce(AllBodies[i], eventCall.mouse.position, Matter.Vector.mult(Matter.Vector.normalise(Matter.Vector.sub(eventCall.mouse.position, AllBodies[i].position)), 1));
-                }
-            }
-        })
-        // run the engine
-        //  Matter.Engine.run(engine);
+                var xfollow2;
 
-    // run the renderer
-    Matter.Render.run(render);
+                if (AroundPointRatio(wInPixels, hInPixels, 240, 180, 0.2) && !done[0])
+                {
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><video id='sheppardPortrait' width='" + wInPixels + "' height='" + hInPixels + "' autoplay loop muted><source src='Media/"+ House + ".mp4' type='video/mp4'></video></div>";
+                    done[0] = true;
+                }
+                else if (AroundPointRatio(wInPixels, hInPixels, 937, 379, 0.2) && !done[1])
+                {
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'> <img src='Media/"+ House + "Words.png' alt='Respect' height=" + hInPixels + " width=" + wInPixels + "> </div>";
+                    done[1] = true;
+                }
+                else
+                {
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><span>" + innerText + "</span></div>";
+                }
+
+                $("#vertBox-" + y).append(xfollow);
+                $("#vertBox2-" + y).append(xfollow2);
+            }
+        }
+        $("#sheppardPortrait").playbackRate = 1.6;
+        $(".innerBoxesRow").click(function()
+        {
+            $(this).addClass("magictime puffOut");
+            var thisIs = this;
+            setTimeout(function()
+            {
+                $(thisIs).addClass('loaded');
+                $(thisIs).css("pointerEvents", "none");
+                //  $(thisIs).css("position", "fixed");
+            }, 1000);
+        });
+    }
 
     var resizeTimer;
-    $(window).resize(function() {
+    $(window).resize(function()
+    {
         clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(UpdatePhysicsWindow, 100);
-    });
-	var CoverResizeT;
-    function UpdatePhysicsWindow() {
-	CoverResizeT = setTimeout(ResizeCovers, 300);
-		ResizeCovers();
-        render.canvas.height = $("#gameWindow").height() - 15;//(window.innerHeight - 183) / 1.15 - 20;
-        render.canvas.width = window.innerWidth / 1.2 - 550	;
-        if (wallTop) {
-            wallTop.vertices[1].x = render.canvas.width + 1;
-            wallTop.vertices[2].x = render.canvas.width + 1;
-            wallBot.vertices[1].y = render.canvas.height - 10;
-            wallBot.vertices[2].y = render.canvas.height + 10;
-            wallBot.vertices[0].y = render.canvas.height - 10;
-            wallBot.vertices[3].y = render.canvas.height + 10;
-            wallRight.vertices[1].x = render.canvas.width + 10;
-            wallRight.vertices[2].x = render.canvas.width + 10;
-            wallRight.vertices[0].x = render.canvas.width - 10;
-            wallRight.vertices[3].x = render.canvas.width - 10;
-        }
-    };
-
-    $("#leftCover").css({
-        top: $("#leftCol").offset().top,
-        left: $("#leftCol").offset().left,
-        width: $("#leftCol").outerWidth(),
-        height: $("#leftCol").outerHeight()
-    });
-
-    $("#rightCover").css({
-        top: $("#rightCol").offset().top,
-        left: $("#rightCol").offset().left,
-        width: $("#rightCol").outerWidth(),
-        height: $("#rightCol").outerHeight()
-    });
-
-    $("#leftCover").click(function() {
-        $(this).addClass("magictime puffOut");
-        setTimeout(function() {
-        $("#loaderWrapper").addClass('loaded');
-    }, 1000);
-    });
-    $("#rightCover").click(function() {
-        $(this).addClass("magictime puffOut");
-        setTimeout(function() {
-        $("#loaderWrapper").addClass('loaded');
-    }, 1000);
+        resizeTimer = setTimeout(Resize, 100);
     });
 });
-var clicked = false;
-function ResizeCovers(){
-$("#leftCover").css({
-        top: $("#leftCol").offset().top,
-        left: $("#leftCol").offset().left,
-        width: $("#leftCol").outerWidth(),
-        height: $("#leftCol").outerHeight()
-    });
 
-    $("#rightCover").css({
-        top: $("#rightCol").offset().top,
-        left: $("#rightCol").offset().left,
-        width: $("#rightCol").outerWidth(),
-        height: $("#rightCol").outerHeight()
+function AroundPointRatio(width, height, preferedWidth, preferedHeight, allowence)
+{
+    var ratio = width / height;
+    var prefRatio = preferedWidth / preferedHeight;
+
+    if (NearlyEqual(ratio, prefRatio, allowence))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+    // if (width > preferedWidth - allow && width < preferedWidth + allow) {
+    //     if (height > preferedHeight - allow && height < preferedHeight + allow) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // } else {
+    //     return false;
+    // }
+}
+
+function NearlyEqual(a, b, allowence)
+{
+    if (a > b - allowence && a < b + allowence)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function RandomSplits(total, amountOfValues, min, max)
+{
+    // while (true) {
+    //     var a = [];
+    //     var i = 0;
+    //     var trueTotal = total;
+    //     while (trueTotal > 0) {
+    //         if (i == amountOfValues - 1) {
+    //             a.push(trueTotal);
+    //             a = shuffle(a);
+    //             return a;
+    //         }
+    //         var s = Math.random() * trueTotal / max + min;
+    //         // while (s < 10 || s > 50) {
+    //         //   s = Math.random() * total;
+    //         // }
+    //         a.push(s);
+    //         trueTotal -= s;
+    //         i++;
+    //     }
+    // }
+    var trueTotal = 0;
+    var a = [];
+    for (var i = 0; i < amountOfValues; i++)
+    {
+        var currentPercent = GetRandomArbitrary(min, max);
+        trueTotal += currentPercent;
+        a.push(currentPercent);
+    }
+    for (var i = 0; i < a.length; i++)
+    {
+        a[i] = a[i] / trueTotal;
+        a[i] = a[i] * total;
+    }
+    //a = shuffle(a);
+    return a;
+}
+
+function shuffle(array)
+{
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex)
+    {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+function Resize()
+{
+    $(".secondBody").css("top", $(".mainBody").offset().top);
+    $(".secondBody").css("left", $(".mainBody").offset().left);
+    $(".secondBody").css("width", $(".mainBody").width());
+    $(".secondBody").css("height", $(".mainBody").height());
+
+    $(".secondBody").find("*").textfill(
+    {
+        minFontPixels: 5,
+        maxFontPixels: 900
     });
 }
-function SnellClick(e) {
-    if (clicked == false) {
+
+var clicked = false;
+
+function GetRandomInt(min, max)
+{
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function GetRandomArbitrary(min, max)
+{
+    return Math.random() * (max - min) + min;
+}
+
+function SnellClick(e)
+{
+    if (clicked == false)
+    {
         clicked = true;
         $("#snellGlow").css("left", e.pageX);
         $("#snellGlow").css("top", e.pageY);
         $("#snellGlow").css("box-shadow", "0 0 10px 0 rgba(0, 0, 0, 0.9)");
-        $("#snellGlow").animate({
+        $("#snellGlow").animate(
+        {
             boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
-        }, {
+        },
+        {
             duration: 1500,
             easing: "linear"
         });
         $("#snellGlow").css("z-index", "10000");
         //  $(".Snell").css("z-index", "-1");
-        setTimeout(function delayed() {
+        setTimeout(function delayed()
+        {
             GoToPageFromSheppard("Snell");
         }, 2000);
     }
 }
 
-function HillaryClick(e) {
-    if (clicked == false) {
+function HillaryClick(e)
+{
+    if (clicked == false)
+    {
         clicked = true;
         $("#hillaryGlow").css("left", e.pageX);
         $("#hillaryGlow").css("top", e.pageY);
         $("#hillaryGlow").css("box-shadow", "0 0 10px 0 rgba(250, 255, 0, 0.9)");
-        $("#hillaryGlow").animate({
+        $("#hillaryGlow").animate(
+        {
             boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
-        }, {
+        },
+        {
             duration: 1500,
             easing: "linear",
             // done: GoToPage("Hillary")
         });
         $("#hillaryGlow").css("z-index", "10000");
         //  $(".Hillary").css("z-index", "-1");
-        setTimeout(function delayed() {
+        setTimeout(function delayed()
+        {
             GoToPageFromSheppard("Hillary");
         }, 2000);
     }
 }
 
-function RutherfordClick(e) {
-    if (clicked == false) {
+function RutherfordClick(e)
+{
+    if (clicked == false)
+    {
         clicked = true;
         $("#rutherfordGlow").css("left", e.pageX);
         $("#rutherfordGlow").css("top", e.pageY);
         $("#rutherfordGlow").css("box-shadow", "0 0 10px 0 rgba(255, 0, 0, 0.9)");
-        $("#rutherfordGlow").animate({
+        $("#rutherfordGlow").animate(
+        {
             boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
-        }, {
+        },
+        {
             duration: 1500,
             easing: "linear"
         });
         $("#rutherfordGlow").css("z-index", "1000");
-        setTimeout(function delayed() {
+        setTimeout(function delayed()
+        {
             GoToPageFromSheppard("Rutherford");
         }, 2000);
     }
 }
 
-function TepueaClick(e) {
-    if (clicked == false) {
+function TepueaClick(e)
+{
+    if (clicked == false)
+    {
         clicked = true;
         $("#tepueaGlow").css("left", e.pageX);
         $("#tepueaGlow").css("top", e.pageY);
         $("#tepueaGlow").css("box-shadow", "0 0 10px 0 rgba(0, 198, 26, 0.9)");
-        $("#tepueaGlow").animate({
+        $("#tepueaGlow").animate(
+        {
             boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
-        }, {
+        },
+        {
             duration: 1500,
             easing: "linear"
         });
         $("#tepueaGlow").css("z-index", "1000");
-        setTimeout(function delayed() {
+        setTimeout(function delayed()
+        {
             GoToPageFromSheppard("Tepuea");
         }, 2000);
     }
 }
 
-function GoToPageFromSheppard(page) {
+function GoToPageFromSheppard(page)
+{
     window.location.href = "../" + page + "/index.html";
 }
 
-function getRandomInt(min, max) {
+function getRandomInt(min, max)
+{
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function FadeOut() {
+function FadeOut()
+{
     $("#loaderWrapper").addClass("magictime puffOut");
-	ResizeCovers();
-    setTimeout(function() {
-    $("#loaderWrapper").addClass('loaded');
-}, 1000);
+    //ResizeCovers();
+    setTimeout(function()
+    {
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
 }
