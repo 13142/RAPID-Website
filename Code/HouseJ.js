@@ -1,23 +1,56 @@
+window.onpageshow = function(event)
+{
+    if (event.persisted)
+    {
+        window.location.reload()
+    }
+};
 $(document).ready(function()
 {
 
     $("#loader").hide().delay(400).fadeIn(1500);
 
     var allWords;
+    var allWordsBackup;
     var House = $("#HouseName").text().trim();
+    var houseWords = new Image();
+    var ready = false;
+    houseWords.onload = function()
+    {
+        ready = true;
+    }
+    houseWords.src = "./Media/" + House + "Words.png";
     $.ajax(
     {
-        url: "Media/"+ House + "Words.txt",
+        url: "Media/" + House + "Text.txt",
         dataType: "text",
+        cache: false,
         success: function(data)
         {
+            console.log("fef");
             var NewData = data.toUpperCase();
             allWords = (NewData).split("\n");
-            setTimeout(LoadBoxes, 0);
+            allWordsBackup = allWords.slice();
+            setTimeout(Prelude, 0);
             //LoadBoxes();
             setTimeout(Resize, 300);
+        },
+        error: function (er) {
+          console.log(er);
         }
     });
+
+    function Prelude()
+    {
+        if (ready)
+        {
+            LoadBoxes();
+        }
+        else
+        {
+            setTimeout(Prelude, 100);
+        }
+    }
 
     function LoadBoxes()
     {
@@ -43,11 +76,9 @@ $(document).ready(function()
             $(".secondBody").append(follow2);
             for (var x = 0; x < randomCol; x++)
             {
+                          console.log(allWordsBackup);
                 var hInPixels = $(".mainBody").height() * (heightx[x] / 100);
                 //var randomWidth = GetRandomArbitrary(1, 4);
-                var randomIndex = GetRandomInt(0, allWords.length);
-                var innerText = allWords[randomIndex];
-                allWords.splice(randomIndex, 1);
                 var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='height: " + hInPixels + "px;'></div>";
 
                 //var fontSize = ((hInPixels * wInPixels) / 2000) - innerText.length / 2;  //randomWidth;
@@ -71,16 +102,22 @@ $(document).ready(function()
 
                 if (AroundPointRatio(wInPixels, hInPixels, 240, 180, 0.2) && !done[0])
                 {
-                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><video id='sheppardPortrait' width='" + wInPixels + "' height='" + hInPixels + "' autoplay loop muted><source src='Media/"+ House + ".mp4' type='video/mp4'></video></div>";
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><video id='" + House + "Portrait' width='" + wInPixels + "' height='" + hInPixels + "' autoplay loop muted><source src='Media/" + House + ".mp4' type='video/mp4'></video></div>";
                     done[0] = true;
                 }
-                else if (AroundPointRatio(wInPixels, hInPixels, 647, 346, 0.2) && !done[1])
+                else if (AroundPointRatio(wInPixels, hInPixels, houseWords.width, houseWords.height, 0.2) && !done[1])
                 {
-                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'> <img src='Media/"+ House + "Words.png' alt='Respect' height=" + hInPixels + " width=" + wInPixels + "> </div>";
+                    xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'> <img src='Media/" + House + "Words.png' alt='Respect' height=" + hInPixels + " width=" + wInPixels + "> </div>";
                     done[1] = true;
                 }
                 else
                 {
+                  if (allWords.length == 0) {
+                    allWords = allWordsBackup.slice();
+                  }
+                    var randomIndex = GetRandomInt(0, allWords.length);
+                    var innerText = allWords[randomIndex];
+                    allWords.splice(randomIndex, 1);
                     xfollow2 = "<div id=\'box-" + y + "-" + x + "t\' class='innerBoxesRow' style='height: " + hInPixels + "px; flex: 0 0 auto; text-align: " + alignment + "; font-size: 10pt'><span>" + innerText + "</span></div>";
                 }
 
@@ -88,7 +125,7 @@ $(document).ready(function()
                 $("#vertBox2-" + y).append(xfollow2);
             }
         }
-        $("#sheppardPortrait").playbackRate = 1.6;
+        $("#" + House + "Portrait").playbackRate = 1.6;
         $(".innerBoxesRow").click(function()
         {
             $(this).addClass("magictime puffOut");
@@ -123,16 +160,6 @@ function AroundPointRatio(width, height, preferedWidth, preferedHeight, allowenc
     {
         return false;
     }
-
-    // if (width > preferedWidth - allow && width < preferedWidth + allow) {
-    //     if (height > preferedHeight - allow && height < preferedHeight + allow) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // } else {
-    //     return false;
-    // }
 }
 
 function NearlyEqual(a, b, allowence)
@@ -255,7 +282,7 @@ function SnellClick(e)
         //  $(".Snell").css("z-index", "-1");
         setTimeout(function delayed()
         {
-            GoToPageFromSheppard("Snell");
+            GoToPageFromHouse("Snell");
         }, 2000);
     }
 }
@@ -281,7 +308,7 @@ function HillaryClick(e)
         //  $(".Hillary").css("z-index", "-1");
         setTimeout(function delayed()
         {
-            GoToPageFromSheppard("Hillary");
+            GoToPageFromHouse("Hillary");
         }, 2000);
     }
 }
@@ -305,7 +332,7 @@ function RutherfordClick(e)
         $("#rutherfordGlow").css("z-index", "1000");
         setTimeout(function delayed()
         {
-            GoToPageFromSheppard("Rutherford");
+            GoToPageFromHouse("Rutherford");
         }, 2000);
     }
 }
@@ -329,12 +356,36 @@ function TepueaClick(e)
         $("#tepueaGlow").css("z-index", "1000");
         setTimeout(function delayed()
         {
-            GoToPageFromSheppard("Tepuea");
+            GoToPageFromHouse("Tepuea");
         }, 2000);
     }
 }
 
-function GoToPageFromSheppard(page)
+function SheppardClick(e)
+{
+    if (clicked == false)
+    {
+        clicked = true;
+        $("#sheppardGlow").css("left", e.pageX);
+        $("#sheppardGlow").css("top", e.pageY);
+        $("#sheppardGlow").css("box-shadow", "0 0 10px 0 rgba(0, 132, 198, 0.9)");
+        $("#sheppardGlow").animate(
+        {
+            boxShadow: "0 0 8000000px 3000px rgba(255, 255, 255, 1)"
+        },
+        {
+            duration: 1500,
+            easing: "linear"
+        });
+        $("#sheppardGlow").css("z-index", "1000");
+        setTimeout(function delayed()
+        {
+            GoToPageFromHouse("Sheppard");
+        }, 2000);
+    }
+}
+
+function GoToPageFromHouse(page)
 {
     window.location.href = "../" + page + "/index.html";
 }

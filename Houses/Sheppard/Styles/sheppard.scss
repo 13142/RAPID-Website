@@ -80,6 +80,8 @@ html {
 }
 
 #loader {
+  $InnerColor: #ffffff;
+  $OuterColor: rgb(2, 151, 246);
     text-align: center;
     position: absolute;
     top: 40%;
@@ -90,7 +92,7 @@ html {
     color: #ffffff;
     animation: LoadingNeonText 1.5s ease-in-out infinite alternate;
     @at-root {
-         @include GlowingText("Loading" ,rgb(255, 255, 255), rgb(2, 151, 246));
+         @include GlowingText("Loading" ,$InnerColor, $OuterColor);
     }
     width: 100%;
 }
@@ -119,17 +121,19 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 }
 
 .MainOverall {
+  $InnerColor: #cce8ff;
+  $OuterColor: rgb(2, 151, 246);
     text-align: center;
     font-size: 70pt;
     font-family: Mohave;
     padding-top: 10px;
     padding-bottom: 20px;
     margin-top: 5px;
-    color: #cce8ff;
-    animation: TitleNeonText 1.5s ease-in-out infinite alternate; //    border: medium white solid;
+    color: $InnerColor;
+    animation: TitleNeonText 1.5s ease-in-out infinite alternate; 
     flex-grow: 0;
     flex-basis: 80%;
-    box-shadow: inset 0 -7px 0 0 #000023, inset 0 7px 0 0 #000023,inset -5px 0 5px 1px rgba(255,255,255,0.7),inset 5px 0 5px 1px rgba(255,255,255,0.7);
+    box-shadow: inset 0px -7px 0px 0px $backgroundColor, inset 0px 7px 0px 0px $backgroundColor,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
 
     .subtitle {
         font-size: 21pt;
@@ -140,7 +144,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
         cursor: default;
     }
     @at-root {
-         @include SoftText("Title", #cce8ff, rgb(2, 151, 246));
+         @include SoftText("Title", $InnerColor, $OuterColor);
     }
 }
 
@@ -150,7 +154,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     color: white;
     //  border: medium white solid;
     margin-top: 5px;
-    box-shadow: inset 0 -7px 0 0 #000023, inset 0 7px 0 0 #000023,inset -5px 0 5px 1px rgba(255,255,255,0.7),inset 5px 0 5px 1px rgba(255,255,255,0.7);
+    box-shadow: inset 0px -7px 0px 0px $backgroundColor, inset 0px 7px 0px 0px $backgroundColor,inset -5px 0px 5px 1px rgba(255,255,255,0.7),inset 5px 0px 5px 1px rgba(255,255,255,0.7);
 }
 
 .vertText {
@@ -235,6 +239,22 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 //     padding: 10px;
 //     flex: 1 100%;
 // }
+
+.SheppardTxt {
+    $InnerColor: #cce8ff;
+    $OuterColor: rgb(2, 151, 246);
+    transform: rotate(90deg) translate(calc(32px - 3.7vw), calc(3px - 1.4vw));
+    font-size: calc(10pt + 1.65vw);
+    animation: LesserOnesSheppardNeonText 1.5s ease-in-out infinite alternate;
+    &:hover {
+        animation: HoverOnesSheppardNeonText 0.5s ease-in reverse;
+        text-shadow: 0 0 10px $InnerColor, 0 0 20px $InnerColor, 0 0 30px $InnerColor, 0 0 40px $OuterColor, 0 0 70px $OuterColor, 0 0 80px $OuterColor, 0 0 100px $OuterColor, 0 0 150px $OuterColor;
+    }
+    @at-root {
+         @include SoftText("LesserOnesSheppard", $InnerColor, $OuterColor);
+        @include GrowText("HoverOnesSheppard", $InnerColor, $OuterColor);
+    }
+}
 
 .secondBody {
     position: fixed;

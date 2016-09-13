@@ -1,1 +1,74 @@
-HelloWorld!!  1!!
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>RAPID</title>
+    <script>
+    var on = /*@cc_on!@*/false || !!document.documentMode;
+    //var ed = !isIE && !!window.StyleMedia;
+    if (on) {
+      window.location.replace("../../IEResponse.html");
+    }
+    </script>
+    <link rel="stylesheet" href="../../Styles/Uni.min.css">
+    <link rel="stylesheet" href="Styles/hillary.min.css">
+    <!-- <link rel="stylesheet" href="../../Styles/jquery-ui.min.css"> -->
+    <link rel="stylesheet" href="../../Styles/magic.css">
+</head>
+
+<body oncontextmenu="return false" class="unselectable">
+    <div id="loaderWrapper" class="unselectable" onclick="FadeOut()">
+        <div id="loader" style="display: none">Hillary</div>
+    </div>
+    </div>
+    <div id="PageWrapper">
+        <div class="TotalContainer" id="tester"></div>
+        <div class="top-container unselectable">
+          <div class="SheppardTitle lesserContainer" onmouseup="SheppardClick(event)">
+              <div id="sheppardGlow" style="position: absolute"></div>
+              <div class="vertText SheppardTxt">Sheppard</div>
+          </div>
+          <div class="SnellTitle lesserContainer" onmouseup="SnellClick(event)">
+              <div id="snellGlow" style="position: absolute"></div>
+              <div class="vertText SnellTxt">Snell</div>
+          </div>
+            <div class="MainOverall">
+              <!-- MAKE SURE THIS DIV CONTAINS THE HOUSE NAME -->
+                <div class="HillaryTitle" id="HouseName">
+                    Hillary
+                </div>
+                <div class="subtitle">
+                    Perservere and Don't Give Up
+                </div>
+            </div>
+
+            <div class="RutherfordTitle lesserContainer" onmouseup="RutherfordClick(event)">
+                <div id="rutherfordGlow" style="position: absolute"></div>
+                <div class="vertText RutherfordTxt">Ruther
+                    <br/>ford</div>
+            </div>
+            <div class="TepueaTitle lesserContainer" onmouseup="TepueaClick(event)">
+                <div id="tepueaGlow" style="position: absolute"></div>
+                <div class="vertText TepueaTxt">Te Puea</div>
+            </div>
+        </div>
+        <div class="secondBody">
+        </div>
+        <div class="mainBody">
+        </div>
+        <div class="footer">
+            <span class="left">Created by Rex
+          <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
+            <span class="right">Created for Hillcrest High</span>
+        </div>
+    </div>
+    <!-- Jquery and dependencies-->
+    <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="../../Code/jquery.animate-shadow.js"></script>
+    <script type="text/javascript" src="../../Code/jquery.textfill.min.js"></script>
+
+    <script type="text/javascript" src="../../Code/HouseJ.js"></script>
+</body>
+
+</html>
