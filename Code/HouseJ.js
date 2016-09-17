@@ -35,8 +35,9 @@ $(document).ready(function()
             //LoadBoxes();
             setTimeout(Resize, 300);
         },
-        error: function (er) {
-          console.log(er);
+        error: function(er)
+        {
+            console.log(er);
         }
     });
 
@@ -76,7 +77,7 @@ $(document).ready(function()
             $(".secondBody").append(follow2);
             for (var x = 0; x < randomCol; x++)
             {
-                          console.log(allWordsBackup);
+                console.log(allWordsBackup);
                 var hInPixels = $(".mainBody").height() * (heightx[x] / 100);
                 //var randomWidth = GetRandomArbitrary(1, 4);
                 var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='height: " + hInPixels + "px;'></div>";
@@ -112,9 +113,10 @@ $(document).ready(function()
                 }
                 else
                 {
-                  if (allWords.length == 0) {
-                    allWords = allWordsBackup.slice();
-                  }
+                    if (allWords.length == 0)
+                    {
+                        allWords = allWordsBackup.slice();
+                    }
                     var randomIndex = GetRandomInt(0, allWords.length);
                     var innerText = allWords[randomIndex];
                     allWords.splice(randomIndex, 1);
@@ -125,7 +127,16 @@ $(document).ready(function()
                 $("#vertBox2-" + y).append(xfollow2);
             }
         }
-        $("#" + House + "Portrait").playbackRate = 1.6;
+
+        if (House == "Sheppard")
+        {
+            $("#" + House + "Portrait").playbackRate = 1.6;
+        }
+        else
+        {
+            $("#" + House + "Portrait").playbackRate = 1;
+        }
+
         $(".innerBoxesRow").click(function()
         {
             $(this).addClass("magictime puffOut");
