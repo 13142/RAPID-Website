@@ -150,6 +150,15 @@ $(document).ready(function()
                 //  $(thisIs).css("position", "fixed");
             }, 1000);
         });
+        Resize();
+        setTimeout(function()
+        {
+          $(".secondBody").find("*").textfill(
+          {
+              minFontPixels: 5,
+              maxFontPixels: 900
+          });
+        }, 1000);
     }
 
     var resizeTimer;
