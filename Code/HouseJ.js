@@ -257,7 +257,7 @@ function shuffle(array)
 }
 
 function Resize()
-{
+{ 
   console.log("3434");
     $(".secondBody").css("top", $(".mainBody").offset().top);
     $(".secondBody").css("left", $(".mainBody").offset().left);
