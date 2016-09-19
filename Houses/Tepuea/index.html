@@ -4,36 +4,35 @@
 <head>
     <meta charset="utf-8">
     <title>RAPID</title>
+    <script>
+        var on = /*@cc_on!@*/ false || !!document.documentMode;
+        //var ed = !isIE && !!window.StyleMedia;
+        console.log("Fefef");
+        if (on) {
+            window.location.replace("../../IEResponse.html");
+        }
+    </script>
     <link rel="stylesheet" href="../../Styles/Uni.min.css">
-    <link rel="stylesheet" href="Styles/snell.min.css">
-    <!-- <link rel="stylesheet" href="../../Styles/jquery-ui.min.css"> -->
+    <link rel="stylesheet" href="Styles/tepuea.min.css">
     <link rel="stylesheet" href="../../Styles/magic.css">
 </head>
 
 <body oncontextmenu="return false" class="unselectable">
     <div id="loaderWrapper" class="unselectable">
-        <div id="loader" style="display: none">Snell</div>
-
+        <div id="loader" style="display: none">Tepuea</div>
     </div>
     </div>
     <div id="PageWrapper">
-        <div class="TotalContainer"></div>
+        <div class="TotalContainer" id="tester"></div>
         <div class="top-container unselectable">
             <div class="SheppardTitle lesserContainer" onmouseup="SheppardClick(event)">
                 <div id="sheppardGlow" style="position: absolute"></div>
                 <div class="vertText SheppardTxt">Sheppard</div>
             </div>
-            <div class="MainOverall">
-              <!-- MAKE SURE THIS DIV CONTAINS THE HOUSE NAME -->
-                <div class="SnellTitle" id="HouseName">
-                    Snell
-                </div>
-                <div class="subtitle">
-                    Aim for the best you can be
-                </div>
+            <div class="SnellTitle lesserContainer" onmouseup="SnellClick(event)">
+                <div id="snellGlow" style="position: absolute"></div>
+                <div class="vertText SnellTxt">Snell</div>
             </div>
-
-
             <div class="HillaryTitle lesserContainer" onmouseup="HillaryClick(event)">
                 <div id="hillaryGlow" style="position: absolute"></div>
                 <div class="vertText HillaryTxt">Hillary</div>
@@ -43,9 +42,14 @@
                 <div class="vertText RutherfordTxt">Ruther
                     <br/>ford</div>
             </div>
-            <div class="TepueaTitle lesserContainer" onmouseup="TepueaClick(event)">
-                <div id="tepueaGlow" style="position: absolute"></div>
-                <div class="vertText TepueaTxt">Te Puea</div>
+            <div class="MainOverall">
+                <!-- MAKE SURE THIS DIV CONTAINS THE HOUSE NAME -->
+                <div class="TepueaTitle" id="HouseName">
+                    Tepuea
+                </div>
+                <div class="subtitle">
+                    Value diversity and differences
+                </div>
             </div>
         </div>
         <div class="secondBody">
@@ -57,9 +61,6 @@
           <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
             <span class="right">Created for Hillcrest High</span>
         </div>
-    </div>
-    <div class="clear">
-        This is the body
     </div>
     <!-- Jquery and dependencies-->
     <script type="text/javascript" src="../../Code/jquery-3.1.0.js"></script>

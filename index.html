@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>RAPID</title>
     <script>
-    var on = /*@cc_on!@*/false || !!document.documentMode;
-    //var ed = !isIE && !!window.StyleMedia;
-    console.log("Fefef");
-    if (on) {
-      window.location.replace("IEResponse.html");
-    }
+        var on = /*@cc_on!@*/ false || !!document.documentMode;
+        //var ed = !isIE && !!window.StyleMedia;
+        if (on) {
+            window.location.replace("IEResponse.html");
+        }
     </script>
     <link rel="stylesheet" href="Styles/main2.min.css">
     <link rel="stylesheet" href="Styles/Uni.min.css">
     <link rel="stylesheet" href="Styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="Styles/magic.min.css">
 </head>
 
 <body oncontextmenu="return false">
-    <div class="top" ondragstart="return false">
+    <div id="loaderWrapper" class="unselectable">
+        <div id="loader" style="display: none">RAPID</div>
+    </div>
+    <div id="PageWrapper" ondragstart="return false">
         <div class="Title" ondragstart="return false">
             <img src="./Images/ForTitle.png" alt="" id="titleImage" draggable="false" ondragstart="return false" class="unselectable" />
         </div>
@@ -53,18 +57,18 @@
                 </div>
             </div>
         </div>
-        <div class="Footer">
-            Bottom Part
+        <div class="footer">
+            <span class="left">Created by Rex
+          <br/> Contact Email: 13142@hillcrest-high.school.nz</span>
+            <span class="right">Created for Hillcrest High</span>
         </div>
+    </div>
+    <!-- Jquery and dependencies-->
+    <script type="text/javascript" src="./Code/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="./Code/jquery.animate-shadow.js"></script>
 
-        <!-- Jquery and dependencies-->
-        <script type="text/javascript" src="./Code/jquery-3.1.0.js"></script>
-        <script type="text/javascript" src="./Code/jquery-ui.js"></script>
-        <script type="text/javascript" src="./Code/jquery.animate-shadow.js"></script>
-        <script type="text/javascript" src="./Code/velocity.min.js"></script>
-
-        <script type="text/javascript" src="./Code/main.js"></script>
-        <script type="text/javascript" src="./Code/ButtonLinks.js"></script>
+    <script type="text/javascript" src="./Code/main.js"></script>
+    <script type="text/javascript" src="./Code/ButtonLinks.js"></script>
 </body>
 
 </html>

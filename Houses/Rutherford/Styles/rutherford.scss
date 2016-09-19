@@ -19,7 +19,7 @@
     src: url("../../../Fonts/Montserrat-Light.otf");
     font-weight: lighter;
 }
-$backgroundColor: #000023;
+$backgroundColor: #220000;
 
 body,
 html {
@@ -85,8 +85,8 @@ html {
 }
 
 #loader {
-  $InnerColor: #ffffff;
-  $OuterColor: rgb(2, 151, 246);
+  $InnerColor: rgb(251, 240, 240);
+  $OuterColor: rgb(255, 0, 0);
     text-align: center;
     position: absolute;
     top: 40%;
@@ -126,8 +126,8 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 }
 
 .MainOverall {
-  $InnerColor: #cce8ff;
-  $OuterColor: rgb(2, 151, 246);
+  $InnerColor: rgb(255, 223, 223);
+  $OuterColor: rgb(255, 0, 0);
     text-align: center;
     font-size: 70pt;
     font-family: Mohave;
@@ -263,7 +263,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
 .secondBody {
     position: fixed;
-    background-color: #001542;
+    background-color: #6c0000;
     flex: 1 1 auto;
     flex-grow: 1;
     flex-shrink: 1;
@@ -295,7 +295,6 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
 .mainBody {
     border: white medium none;
-    //background-color: #001542;
     background-color: none;
     z-index: 5;
     flex: 1 1 auto;
@@ -309,7 +308,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
 
     .topBox {
         flex: 0 0 180px;
-        box-shadow: 0 0 5px 0 rgb(215, 235, 255);
+        box-shadow: 0 0 5px 0 rgb(254, 193, 193);
         //    border: solid white thin;
     }
 
@@ -327,14 +326,14 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     }
 
     .innerBoxesRow {
-        background-color: rgb(215, 235, 255);
+        background-color: rgb(255, 205, 205);
         z-index: 5;
 
         &:hover {
-            background-color: rgb(149, 189, 230);
+            background-color: rgb(212, 120, 120);
 
             &:active {
-                background-color: rgb(24, 107, 193);
+                background-color: rgb(193, 24, 24);
             }
         }
     }
@@ -348,10 +347,10 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     margin-top: 10px;
     //line-height: 70px;
     //text-align: center;
+        font-family: Monstrat;
     color: white;
     display: flex;
     flex-flow: row;
-    font-family: Monstrat;
     padding: 0 2%;
     background-color: rgba(#ffffff, 0.15);
     font-size: 8pt;

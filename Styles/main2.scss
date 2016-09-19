@@ -2,10 +2,18 @@
     font-family: Mohave;
     src: url("../Fonts/Mohave.otf");
 }
+@font-face {
+    font-family: Monstrat;
+    src: url("../Fonts/Montserrat-Light.otf");
+    font-weight: lighter;
+}
+
 body {
     background-color: rgb(10, 10, 10);
     color: #d9d9d9;
+    overflow: hidden;
 }
+
 .Title {
     text-align: center;
     font-size: 70pt;
@@ -13,9 +21,61 @@ body {
     width: 100%;
     padding-top: 20px;
 }
+#PageWrapper {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+#loaderWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    z-index: 1000;
+}
+@mixin GlowingText($name, $inInnerColor, $inOuterColor) {
+     @keyframes #{$name}NeonText{
+        from {
+            text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor;
+        }
+
+        to {
+            text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor;
+        }
+    }
+}
+.loaded {
+    opacity: 0;
+    visibility: hidden;
+    //transition: opacity 1s ease-out, visibility 0s linear 1s;
+}
+#loader {
+    $InnerColor: #e4e4e4;
+    $OuterColor: rgb(255, 255, 255);
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    font-family: Mohave;
+    opacity: 1;
+    font-size: 100pt;
+    color: #0a0a0a;
+    animation: LoadingNeonText 1.5s ease-in-out infinite alternate;
+    @at-root {
+         @include GlowingText("Loading" ,$InnerColor, $OuterColor);
+    }
+    width: 100%;
+}
 #HouseContainer {
     display: flex;
 }
+
 .IndContainer {
     margin-top: 170px;
     margin-bottom: 80px;
@@ -34,6 +94,7 @@ body {
             // text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
             @include StaticGlowTxtUp($name, $inInnerColor, $inOuterColor);
         }
+
         to {
             //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
             @include StaticGlowTxtDown($name, $inInnerColorDown, $inOuterColor);
@@ -44,6 +105,7 @@ body {
             //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inInnerColor, 0 0 20px $inOuterColor, 0 0 35px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 75px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
             @include StaticGlowTxtDown($name, $inInnerColorDown, $inOuterColor);
         }
+
         to {
             //    text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 2px 2px rgb(0, 0, 0), -2px -2px rgb(0, 0, 0), 2px -2px rgb(0, 0, 0), -2px 2px rgb(0, 0, 0);
             @include StaticGlowTxtUp($name, $inInnerColor, $inOuterColor);
@@ -55,11 +117,13 @@ body {
         from {
             text-shadow: 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 40px $inOuterColor, 0 0 50px $inOuterColor, 0 0 70px $inOuterColor;
         }
+
         to {
             text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
         }
     }
 }
+
 .Houses {
     width: 100%;
     height: 100%;
@@ -73,6 +137,7 @@ body {
     color: rgb(255, 255, 255);
     //text-shadow: 2px 2px rgb(45, 45, 45), -2px -2px rgb(45, 45, 45), -2px 2px rgb(45, 45, 45), 2px -2px rgb(45, 45, 45);
 }
+
 .overLap {
     position: absolute;
     width: 0;
@@ -83,7 +148,7 @@ body {
 }
 $LightSide: rgba(255, 255, 255, 0.4);
 $DarkSide: rgba(0, 0, 0, 0.4);
-$LightSidePressed: rgba(0, 0, 0, 0.4);
+$LightSidePressed: rgba(0, 0, 0, 0.4);  
 $DarkSidePressed: rgba(200, 200, 200, 0.25);
 @mixin DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $class) {
      @keyframes #{$class}HoverFadeIn{
@@ -91,6 +156,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
             background-color: $inCoUp;
             box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
         }
+
         100% {
             background-color: $inCoDown;
             box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
@@ -99,22 +165,23 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     @keyframes #{$class}HoverFadeOut {
         0% {
             background-color: $inCoDown;
-            box-shadow: 0 0 40px 10px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+            box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
             z-index: 5;
         }
+
         100% {
             background-color: $inCoUp;
-            box-shadow: 0 0 50px 5px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
+            box-shadow: 0 0 40px 10px $inGlUp, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
             z-index: 0;
         }
     }
 }
 @mixin StaticGlowTxtUp($name, $inInnerColor, $inOuterColor) {
-    text-shadow: 0 0 10px $inInnerColor, 0 0 20px $inInnerColor, 0 0 30px $inInnerColor, 0 0 40px $inOuterColor, 0 0 70px $inOuterColor, 0 0 80px $inOuterColor, 0 0 100px $inOuterColor, 0 0 150px $inOuterColor, 3px 3px rgb(0, 0, 0), -3px -3px rgb(0, 0, 0), 3px -3px rgb(0, 0, 0), -3px 3px rgb(0, 0, 0), 3px 0px rgb(0, 0, 0), -3px 0px rgb(0, 0, 0), 0px -3px rgb(0, 0, 0), 0px 3px rgb(0, 0, 0);
+    text-shadow: 0 0 150px $inOuterColor, 3px 3px rgb(0, 0, 0);
 }
-          //  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
+//  text-shadow: 0 0 5px $inInnerColor, 0 0 10px $inOuterColor, 0 0 15px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor;
 @mixin StaticGlowTxtDown($name, $inInnerColor, $inOuterColor) {
-    text-shadow: 0 0 3px $inInnerColor, 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor, 3px 3px rgb(0, 0, 0), -3px -3px rgb(0, 0, 0), 3px -3px rgb(0, 0, 0), -3px 3px rgb(0, 0, 0), 3px 0px rgb(0, 0, 0), -3px 0px rgb(0, 0, 0), 0px -3px rgb(0, 0, 0), 0px 3px rgb(0, 0, 0);
+    text-shadow: 0 0 3px $inInnerColor, 0 0 5px $inInnerColor, 0 0 10px $inInnerColor, 0 0 15px $inOuterColor, 0 0 25px $inOuterColor, 0 0 30px $inOuterColor, 0 0 40px $inOuterColor, 0 0 60px $inOuterColor, 3px 3px rgb(0, 0, 0), -3px -3px rgb(0, 0, 0), 3px -3px rgb(0, 0, 0), -3px 3px rgb(0, 0, 0), 3px 0 rgb(0, 0, 0), -3px 0 rgb(0, 0, 0), 0 -3px rgb(0, 0, 0), 0 3px rgb(0, 0, 0);
 }
 @mixin AnimBootstrapUp($class) {
     //  animation: TitleNeonText 1.5s ease-in-out infinite alternate;
@@ -142,11 +209,13 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     top: 0;
     @include StaticGlowTxtUp($inClass, $inTeUp, $inCoDown);
     @include AnimBootstrapUp($inClass);
+
     &:hover {
         background-color: $inCoDown;
         box-shadow: 0 0 50px 5px $inGlDown, inset -3px -3px 1px 1px $DarkSide, inset 3px 3px 1px 1px $LightSide;
-        @include StaticGlowTxtDown($inClass, rgba(255, 255, 255, 0.5), $inCoDown);
+        //@include StaticGlowTxtDown($inClass, rgba(255, 255, 255, 0.5), $inCoDown);
         @include AnimBootstrapDown($inClass);
+
         &:active {
             background-color: $inCoPressed;
             color: $inTePressed;
@@ -154,10 +223,11 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
         }
     }
     @at-root {
-       @include DoGlowingText($inClass, $inTeUp, $inCoDown, rgba(255, 255, 255, 0.5));
+         //@include DoGlowingText($inClass, $inTeUp, $inCoDown, rgba(255, 255, 255, 0.5));
         @include DoubleGlowAnim($inCoUp, $inCoDown, $inGlUp, $inGlDown, $inClass);
     }
 }
+
 .Sheppard {
     $Class: "Sheppard";
     $ColorUp: rgb(57, 142, 255);
@@ -170,6 +240,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextPressed: rgb(158, 182, 209);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
+
 .Snell {
     $Class: "Snell";
     $ColorUp: rgb(60, 60, 60);
@@ -182,6 +253,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextPressed: rgb(210, 210, 210);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
+
 .Hillary {
     $Class: "Hillary";
     $ColorUp: rgb(255, 255, 69);
@@ -194,6 +266,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextPressed: rgb(209, 207, 158);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
 }
+
 .Rutherford {
     $Class: "Rutherford";
     $ColorUp: rgb(204, 68, 68);
@@ -207,6 +280,7 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
     font-size: calc(4.1vw + -1pt);
 }
+
 .TePuea {
     $Class: "TePuea";
     $ColorUp: rgb(108, 189, 63);
@@ -218,4 +292,44 @@ $DarkSidePressed: rgba(200, 200, 200, 0.25);
     $TextUp: rgb(215, 252, 213);
     $TextPressed: rgb(159, 209, 158);
     @include EverythingBundle($Class, $ColorUp, $ColorDown, $ColorPressed, $GlowUp, $GlowDown, $GlowPressed, $TextUp, $TextPressed);
+}
+
+.footer {
+    //  border: white medium solid;
+    //position: fixed;
+    //background-color: rgb(43, 44, 156);
+    height: 50px;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    font-family: Monstrat;
+    //line-height: 70px;
+    //text-align: center;
+    color: white;
+    display: flex;
+    flex-flow: row;
+    padding: 0 2%;
+    background-color: rgba(#ffffff, 0.15);
+    font-size: 8pt;
+    box-shadow: inset 0 5px 5px 0 rgb(10, 10, 10);
+    box-sizing: border-box;
+
+    span.left {
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-align: left;
+        flex-grow: 1;
+        flex-shrink: 1;
+        order: 1;
+    }
+
+    span.right {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        text-align: right;
+        flex-grow: 1;
+        flex-shrink: 1;
+        order: 2;
+    }
 }
