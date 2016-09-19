@@ -14,6 +14,11 @@
     font-style: 0;
     src: url("../../../Fonts/Lavanderia Regular.otf");
 }
+@font-face {
+    font-family: Monstrat;
+    src: url("../../../Fonts/Montserrat-Light.otf");
+    font-weight: lighter;
+}
 $backgroundColor: #021c00;
 
 body,
@@ -328,7 +333,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
             background-color: rgb(124, 212, 120);
 
             &:active {
-                background-color: rgb(48, 193, 24);
+                background-color: rgb(193, 24, 24);
             }
         }
     }
@@ -349,7 +354,7 @@ $DarkSide: rgba(255, 255, 255, 0.7);
     background-color: rgba(#ffffff, 0.15);
     font-size: 8pt;
     box-shadow: inset 0 5px 5px 0 $backgroundColor;
-
+        font-family: Monstrat;
     span.left {
         padding-top: 10px;
         padding-bottom: 8px;

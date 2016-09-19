@@ -9,6 +9,23 @@ var brightness = document.getElementById("titleImage");
 var val = 200;
 var rising = false;
 window.setInterval(pulsingTitle, 10);
+$(document).ready(function()
+{
+    $("#loader").hide().delay(400).fadeIn(1500);
+    setTimeout(function () {
+      FadeOut();
+    }, 5000);
+});
+
+function FadeOut()
+{
+    $("#loaderWrapper").addClass("magictime puffOut");
+    //ResizeCovers();
+    setTimeout(function()
+    {
+        $("#loaderWrapper").addClass('loaded');
+    }, 1000);
+}
 
 function pulsingTitle()
 {

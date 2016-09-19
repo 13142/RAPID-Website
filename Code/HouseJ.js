@@ -7,9 +7,10 @@ window.onpageshow = function(event)
 };
 $(document).ready(function()
 {
-
     $("#loader").hide().delay(400).fadeIn(1500);
-
+    setTimeout(function () {
+      FadeOut();
+    }, 5000);
     var allWords;
     var allWordsBackup;
     var House = $("#HouseName").text().trim();
@@ -140,11 +141,12 @@ $(document).ready(function()
         $(".innerBoxesRow").click(function()
         {
             $(this).addClass("magictime puffOut");
+            $(this).css("pointerEvents", "none");
             var thisIs = this;
             setTimeout(function()
             {
                 $(thisIs).addClass('loaded');
-                $(thisIs).css("pointerEvents", "none");
+              //  $(thisIs).css("pointerEvents", "none");
                 //  $(thisIs).css("position", "fixed");
             }, 1000);
         });
@@ -409,6 +411,7 @@ function getRandomInt(min, max)
 function FadeOut()
 {
     $("#loaderWrapper").addClass("magictime puffOut");
+    $("#loaderWrapper").css("pointerEvents", "none");
     //ResizeCovers();
     setTimeout(function()
     {
