@@ -153,12 +153,12 @@ $(document).ready(function()
         Resize();
         setTimeout(function()
         {
-          $(".secondBody").find("*").textfill(
-          {
-              minFontPixels: 5,
-              maxFontPixels: 900
-          });
+          Resize();
         }, 1000);
+        setTimeout(function()
+        {
+          Resize();
+        }, 1500);
     }
 
     var resizeTimer;
@@ -258,6 +258,7 @@ function shuffle(array)
 
 function Resize()
 {
+  console.log("3434");
     $(".secondBody").css("top", $(".mainBody").offset().top);
     $(".secondBody").css("left", $(".mainBody").offset().left);
     $(".secondBody").css("width", $(".mainBody").width());
