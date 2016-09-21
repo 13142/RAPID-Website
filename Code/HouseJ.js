@@ -8,9 +8,10 @@ window.onpageshow = function(event)
 $(document).ready(function()
 {
     $("#loader").hide().delay(400).fadeIn(1500);
+    //Manual loading screen to let browser load,cache,and sort it self out (reduces framerate lag in animations)
     setTimeout(function () {
       FadeOut();
-    }, 5000);
+    }, 6000);
     var allWords;
     var allWordsBackup;
     var House = $("#HouseName").text().trim();
