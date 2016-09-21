@@ -8,19 +8,9 @@ function SheppardClick(e) {
         $("#sheppardGlow").css("box-shadow", "0 0 10px 0 rgba(0, 148, 255, 0.9)");
         $("#sheppardGlow").animate({
             boxShadow: "0 0 9000000px 1850px rgba(255, 255, 255, 1)"
-            // boxShadowBlur: "9000000px",
-            // boxShadowSpread: "1850px",
-          //  boxShadowColor: rgb(9, 255, 0);
         }, {
             duration: 1500,
-            //easing: [ 0,0,1,.08]
         });
-        // $("#sheppardGlow").animate({
-        //       boxShadow: "#ffffff"
-        //   }, {
-        //       duration: 1500,
-        //       easing: "linear"
-        //   });
         $("#sheppardGlow").css("z-index", "1000");
         $(".Sheppard").css("z-index", "-1");
          setTimeout(function delayed() {
@@ -71,7 +61,7 @@ function HillaryClick(e) {
 }
 
 function GoToPage(page) {
-    window.location.href = "Houses/" + page + "/index.html";
+    window.location.href = "Houses/" + page + "/";
 }
 
 function RutherfordClick(e) {
