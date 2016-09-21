@@ -20,7 +20,6 @@ $(document).ready(function()
 function FadeOut()
 {
     $("#loaderWrapper").addClass("magictime puffOut");
-    //ResizeCovers();
     setTimeout(function()
     {
         $("#loaderWrapper").addClass('loaded');

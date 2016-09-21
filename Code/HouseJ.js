@@ -28,12 +28,10 @@ $(document).ready(function()
         cache: false,
         success: function(data)
         {
-            console.log("fef");
             var NewData = data.toUpperCase();
             allWords = (NewData).split("\n");
             allWordsBackup = allWords.slice();
             setTimeout(Prelude, 0);
-            //LoadBoxes();
             setTimeout(Resize, 300);
         },
         error: function(er)
@@ -66,10 +64,7 @@ $(document).ready(function()
         for (var y = 0; y < randomRows; y++)
         {
             var heightx = RandomSplits(100, randomCol, 1, 6);
-            console.log(heightx);
             var randomHeight = GetRandomArbitrary(1, 4);
-            //var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
-            //var follow2 = "<div id=\'vertBox2-" + y + "' class='innerBoxesCol' style='flex: " + randomHeight + " 0 auto'></div>";
             var wInPixels = $(".mainBody").width() * (widthy[y] / 100)
 
             var follow = "<div id=\'vertBox-" + y + "' class='innerBoxesCol' style='flex: 0 0 auto; width: " + wInPixels + "px'></div>";
@@ -78,13 +73,9 @@ $(document).ready(function()
             $(".secondBody").append(follow2);
             for (var x = 0; x < randomCol; x++)
             {
-                console.log(allWordsBackup);
                 var hInPixels = $(".mainBody").height() * (heightx[x] / 100);
-                //var randomWidth = GetRandomArbitrary(1, 4);
                 var xfollow = "<div id=\'box-" + y + "-" + x + "\' class='innerBoxesRow' style='height: " + hInPixels + "px;'></div>";
 
-                //var fontSize = ((hInPixels * wInPixels) / 2000) - innerText.length / 2;  //randomWidth;
-                //console.log(fontSize);
                 var alignment;
                 var alignValue = Math.random()
                 if (alignValue < 0.33)
@@ -146,19 +137,17 @@ $(document).ready(function()
             setTimeout(function()
             {
                 $(thisIs).addClass('loaded');
-              //  $(thisIs).css("pointerEvents", "none");
-                //  $(thisIs).css("position", "fixed");
             }, 1000);
         });
         Resize();
         setTimeout(function()
         {
-          $(".secondBody").find("*").textfill(
-          {
-              minFontPixels: 5,
-              maxFontPixels: 900
-          });
+          Resize();
         }, 1000);
+        setTimeout(function()
+        {
+          Resize();
+        }, 1500);
     }
 
     var resizeTimer;
@@ -198,25 +187,6 @@ function NearlyEqual(a, b, allowence)
 
 function RandomSplits(total, amountOfValues, min, max)
 {
-    // while (true) {
-    //     var a = [];
-    //     var i = 0;
-    //     var trueTotal = total;
-    //     while (trueTotal > 0) {
-    //         if (i == amountOfValues - 1) {
-    //             a.push(trueTotal);
-    //             a = shuffle(a);
-    //             return a;
-    //         }
-    //         var s = Math.random() * trueTotal / max + min;
-    //         // while (s < 10 || s > 50) {
-    //         //   s = Math.random() * total;
-    //         // }
-    //         a.push(s);
-    //         trueTotal -= s;
-    //         i++;
-    //     }
-    // }
     var trueTotal = 0;
     var a = [];
     for (var i = 0; i < amountOfValues; i++)
@@ -230,34 +200,11 @@ function RandomSplits(total, amountOfValues, min, max)
         a[i] = a[i] / trueTotal;
         a[i] = a[i] * total;
     }
-    //a = shuffle(a);
     return a;
 }
 
-function shuffle(array)
-{
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex)
-    {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
 function Resize()
-{
+{ 
     $(".secondBody").css("top", $(".mainBody").offset().top);
     $(".secondBody").css("left", $(".mainBody").offset().left);
     $(".secondBody").css("width", $(".mainBody").width());
@@ -301,7 +248,6 @@ function SnellClick(e)
             easing: "linear"
         });
         $("#snellGlow").css("z-index", "10000");
-        //  $(".Snell").css("z-index", "-1");
         setTimeout(function delayed()
         {
             GoToPageFromHouse("Snell");
@@ -324,10 +270,8 @@ function HillaryClick(e)
         {
             duration: 1500,
             easing: "linear",
-            // done: GoToPage("Hillary")
         });
         $("#hillaryGlow").css("z-index", "10000");
-        //  $(".Hillary").css("z-index", "-1");
         setTimeout(function delayed()
         {
             GoToPageFromHouse("Hillary");
@@ -409,7 +353,7 @@ function SheppardClick(e)
 
 function GoToPageFromHouse(page)
 {
-    window.location.href = "../" + page + "/index.html";
+    window.location.href = "../" + page + "/";
 }
 
 function getRandomInt(min, max)
@@ -421,7 +365,6 @@ function FadeOut()
 {
     $("#loaderWrapper").addClass("magictime puffOut");
     $("#loaderWrapper").css("pointerEvents", "none");
-    //ResizeCovers();
     setTimeout(function()
     {
         $("#loaderWrapper").addClass('loaded');
